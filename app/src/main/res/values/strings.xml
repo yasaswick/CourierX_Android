@@ -9,11 +9,24 @@
     <string name="welcome_to_courierx">Welcome to CourierX</string>
     <string name="track_package">Track Package</string>
     <string name="send_package">Send Package</string>
+    <string name="recepient">Recipient</string>
+    <string name="sender">Sender</string>
+    <string name="added_date">Added Date</string>
+    <string name="picked_up_date">Picked Up Date</string>
+    <string name="delivery_details">Delivery Details</string>
+    <string name="package_id">Package ID</string>
+    <string name="last_tracked_location">Last Tracked Location</string>
+    <string name="sheduled_date">Sheduled Date</string>
+    <string name="track_id">Track ID</string>
+    <string name="description">Description</string>
+    <string name="weight">Weight</string>
+    <string name="package_details">Package Details</string>
+    <string name="is_this_fragile">Is this fragile?</string>
+    <string name="proceed">PROCEED</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password ?</string>
     <string name="message_delivery_person">Message delivery person</string>
     <string name="rate_us">Rate us</string>
-
 </resources>
