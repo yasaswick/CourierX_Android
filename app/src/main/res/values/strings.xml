@@ -9,5 +9,7 @@
     <string name="welcome_to_courierx">Welcome to CourierX</string>
     <string name="track_package">Track Package</string>
     <string name="send_package">Send Package</string>
+    <string name="message_delivery_person">Message delivery person</string>
+    <string name="rate_us">Rate us</string>
 
 </resources>

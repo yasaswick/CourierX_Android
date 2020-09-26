@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/welcome_to_x"
+
         android:textAllCaps="false"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
         android:layout_width="264dp"
         android:layout_height="51dp"
         android:layout_marginTop="20dp"
-        android:text="@string/greeting_1"
+
         android:textAlignment="center"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="@string/email_hint"
+
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -63,7 +63,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="@string/password_hint"
+
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="@string/forgot_password"
+
 
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button3"
