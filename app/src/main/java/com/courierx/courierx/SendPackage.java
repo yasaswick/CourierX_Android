@@ -16,4 +16,4 @@ public class SendPackage extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_send_package, container, false);
     }
-}/
+}
