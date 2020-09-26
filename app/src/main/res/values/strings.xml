@@ -9,6 +9,10 @@
     <string name="welcome_to_courierx">Welcome to CourierX</string>
     <string name="track_package">Track Package</string>
     <string name="send_package">Send Package</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password ?</string>
     <string name="message_delivery_person">Message delivery person</string>
     <string name="rate_us">Rate us</string>
 
