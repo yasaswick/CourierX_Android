@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CourierX</string>
+    <string name="tin_tin_rastapopulous">Tin Tin Rastapopulous</string>
+    <string name="tintinadventures_gmail_com">tintinadventures@gmail.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="we_ll_deliver_your_package_to_wherever_you_want_whenever_you_want">We’ll deliver your package to wherever you want ; whenever you want!</string>
+    <string name="please_chose_a_service_to_get_started">Please chose a service to get started!</string>
+    <string name="welcome_to_courierx">Welcome to CourierX</string>
+    <string name="track_package">Track Package</string>
+    <string name="send_package">Send Package</string>
+
+</resources>

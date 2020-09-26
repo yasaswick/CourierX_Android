@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "619935138341",
+    "firebase_url": "https://courierx-fdd07.firebaseio.com",
+    "project_id": "courierx-fdd07",
+    "storage_bucket": "courierx-fdd07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619935138341:android:b7043b00a063210d3435cc",
+        "android_client_info": {
+          "package_name": "com.courierx.courierx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619935138341-3l9eirp2ahkbfhijv1c84rb2l0v11sm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1Td9EEBZm2-BZDbO_aXGLUOrPcBJr_Go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619935138341-3l9eirp2ahkbfhijv1c84rb2l0v11sm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
