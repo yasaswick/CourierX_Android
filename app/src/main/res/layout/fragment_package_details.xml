@@ -21,11 +21,11 @@
         app:layout_constraintVertical_bias="0.942" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/weight"
         android:layout_width="190dp"
         android:layout_height="45dp"
+        android:hint="@string/weight"
         android:ems="10"
-        android:inputType="textPersonName"
         android:text=""
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +126,7 @@
         app:layout_constraintVertical_bias="0.654" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/packageID"
         android:layout_width="192dp"
         android:layout_height="26dp"
         android:background="#DFDCDC"
@@ -140,9 +140,10 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/description"
         android:layout_width="190dp"
         android:layout_height="45dp"
+        android:hint="@string/description"
         android:ems="10"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -153,9 +154,10 @@
         app:layout_constraintVertical_bias="0.571" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/sheduleDate"
         android:layout_width="189dp"
         android:layout_height="42dp"
+        android:hint="@string/sheduled_date"
         android:ems="10"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -166,7 +168,7 @@
         app:layout_constraintVertical_bias="0.74" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/fragile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
