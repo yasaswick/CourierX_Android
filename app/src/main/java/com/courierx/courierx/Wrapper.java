@@ -17,7 +17,7 @@ public class Wrapper extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrapper);
         mAuth = FirebaseAuth.getInstance();
-        InflateView();
+        InflateViewLogin();
 
     }
 
@@ -30,9 +30,9 @@ public class Wrapper extends AppCompatActivity {
     }
 
 
-    void InflateView(){
+    void InflateViewLogin(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.wrapper_frame, new Login());
+        ft.replace(R.id.wrapper_frame, new PackageDetails());
         ft.commit();
     }
 }

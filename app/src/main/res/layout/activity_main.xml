@@ -43,8 +43,6 @@
             app:defaultNavHost = "true"
             app:navGraph = "@navigation/drawer_navigation"
             >
-
-
         </fragment>
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_delivery"
+    app:startDestination="@id/deliverymanHome">
+    <fragment
+        android:id="@+id/deliverymanHome"
+        android:name="com.courierx.courierx.DeliverymanHome"
+        android:label="fragment_deliveryman_home"
+        tools:layout="@layout/fragment_deliveryman_home" />
+    <fragment
+        android:id="@+id/deliverymanSettings"
+        android:name="com.courierx.courierx.DeliverymanSettings"
+        android:label="fragment_deliveryman_settings"
+        tools:layout="@layout/fragment_deliveryman_settings" />
+    <fragment
+        android:id="@+id/deliverymanSearch"
+        android:name="com.courierx.courierx.DeliverymanSearch"
+        android:label="fragment_deliveryman_search"
+        tools:layout="@layout/fragment_deliveryman_search" />
+</navigation>

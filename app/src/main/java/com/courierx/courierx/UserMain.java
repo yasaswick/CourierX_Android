@@ -28,9 +28,7 @@ public class UserMain extends AppCompatActivity {
         }
     });
 
-
         NavigationView navigationView = findViewById(R.id.navigationView);
-
         NavController navController = Navigation.findNavController(findViewById(R.id.navHostFragment));
         NavigationUI.setupWithNavController(navigationView , navController );
     }
