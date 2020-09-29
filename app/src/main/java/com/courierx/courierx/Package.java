@@ -1,13 +1,18 @@
+package com.courierx.courierx;
+
 import java.util.Date;
 
 public class Package {
     String packageId;
     String description;
     float weight;
-    Date sheduledDate;
+    String sheduledDate;
     Boolean fragile;
 
-    public Package(String packageId, String description, float weight, Date sheduledDate, Boolean fragile) {
+    public Package(){
+    }
+
+    public Package(String packageId, String description, float weight, String sheduledDate, Boolean fragile) {
         this.packageId = packageId;
         this.description = description;
         this.weight = weight;
@@ -27,7 +32,7 @@ public class Package {
         return weight;
     }
 
-    public Date getSheduledDate() {
+    public String getSheduledDate() {
         return sheduledDate;
     }
 
@@ -47,7 +52,7 @@ public class Package {
         this.weight = weight;
     }
 
-    public void setSheduledDate(Date sheduledDate) {
+    public void setSheduledDate(String sheduledDate) {
         this.sheduledDate = sheduledDate;
     }
 
