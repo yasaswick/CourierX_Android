@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.courierx.courierx.AuthScreens.Selector;
 import com.courierx.courierx.AuthScreens.Wrapper;
+import com.courierx.courierx.Models.CourierXUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,16 +22,18 @@ import com.google.firebase.auth.FirebaseUser;
 public class FirebaseAuthentication {
 
     private FirebaseAuth mAuth;
+    private FirebaseRealtime firebaseRealtime;
 
 
 
     public FirebaseAuthentication(){
         mAuth = FirebaseAuth.getInstance();
+        firebaseRealtime = new FirebaseRealtime();
     }
 
 
-    public void loginWithEmail(String email, String password , final Context mcontext){
-        Activity activity = (Activity) mcontext;
+    public void loginWithEmail(String email, String password , final Context mContext){
+        Activity activity = (Activity) mContext;
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener( activity , new OnCompleteListener<AuthResult>() {
                     @Override
@@ -39,13 +42,44 @@ public class FirebaseAuthentication {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("auth", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(mcontext , Selector.class);
-                            mcontext.startActivity(intent);
-                            ((Activity) mcontext).finish();
+                            Intent intent = new Intent(mContext , Selector.class);
+                            mContext.startActivity(intent);
+                            ((Activity) mContext).finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("auth", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(mcontext, "Authentication failed.",
+                            Toast.makeText(mContext, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    public void logOut(Context mContext){
+        mAuth.signOut();
+        Intent intent = new Intent(mContext , Wrapper.class);
+        mContext.startActivity(intent);
+        ((Activity) mContext).finish();
+    }
+
+    public void registerUser(final CourierXUser courierXUseruser, String password , final Context mContext){
+        final Activity activity = (Activity) mContext;
+        mAuth.createUserWithEmailAndPassword(courierXUseruser.getEmail(), password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Auth", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            courierXUseruser.setUid(user.getUid());
+                            firebaseRealtime.registerUser(courierXUseruser);
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Auth", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(activity, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -54,11 +88,6 @@ public class FirebaseAuthentication {
 
 
 
-    public void logOut(Context mcontext){
-        mAuth.signOut();
-        Intent intent = new Intent(mcontext , Wrapper.class);
-        mcontext.startActivity(intent);
-    }
 
 
 

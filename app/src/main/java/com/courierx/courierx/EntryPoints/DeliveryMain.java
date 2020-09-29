@@ -18,13 +18,11 @@ public class DeliveryMain extends AppCompatActivity {
         setContentView(R.layout.activity_delivery_main);
         setUpNavigation();
 
+    }
+    public void setUpNavigation(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView_delivery);
         NavController navController = Navigation.findNavController(findViewById(R.id.bottom_nav_fragment_delivery));
         NavigationUI.setupWithNavController(bottomNavigationView , navController );
-    }
-    public void setUpNavigation(){
-
-
     }
 
 }
