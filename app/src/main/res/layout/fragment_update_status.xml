@@ -10,7 +10,7 @@
     app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
-    tools:context=".UpdateStatus">
+    tools:context=".Delivery.UpdateStatus">
 
     <TextView
         android:id="@+id/textView23"

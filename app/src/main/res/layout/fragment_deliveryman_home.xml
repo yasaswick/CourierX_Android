@@ -5,7 +5,7 @@
     android:id="@+id/constrainLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeliverymanHome">
+    tools:context=".Delivery.DeliverymanHome">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

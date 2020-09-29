@@ -6,17 +6,17 @@
     app:startDestination="@id/deliverymanHome">
     <fragment
         android:id="@+id/deliverymanHome"
-        android:name="com.courierx.courierx.DeliverymanHome"
+        android:name="com.courierx.courierx.Delivery.DeliverymanHome"
         android:label="fragment_deliveryman_home"
         tools:layout="@layout/fragment_deliveryman_home" />
     <fragment
         android:id="@+id/deliverymanSettings"
-        android:name="com.courierx.courierx.DeliverymanSettings"
+        android:name="com.courierx.courierx.Delivery.DeliverymanSettings"
         android:label="fragment_deliveryman_settings"
         tools:layout="@layout/fragment_deliveryman_settings" />
     <fragment
         android:id="@+id/deliverymanSearch"
-        android:name="com.courierx.courierx.DeliverymanSearch"
+        android:name="com.courierx.courierx.Delivery.DeliverymanSearch"
         android:label="fragment_deliveryman_search"
         tools:layout="@layout/fragment_deliveryman_search" />
 </navigation>

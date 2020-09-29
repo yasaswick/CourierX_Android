@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp">
+    tools:context=".AuthScreens.SignUp">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/signInBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -29,7 +29,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
 
     <TextView
         android:id="@+id/textView8"
@@ -46,19 +46,18 @@
 
     <EditText
         android:id="@+id/signUpEmail"
-        android:layout_width="247dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/enter_your_email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/signUpPassRepeat"
         android:layout_width="247dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
@@ -68,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpAddress" />
 
     <EditText
         android:id="@+id/signUpPass"
@@ -80,7 +79,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpPassRepeat" />
 
     <Button
         android:id="@+id/signUpBtn"
@@ -95,7 +94,8 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpPass" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/signUpPhone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="247dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpEmail" />
 
     <EditText
-        android:id="@+id/editTextTextPostalAddress"
+        android:id="@+id/signUpAddress"
         android:layout_width="247dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
@@ -118,5 +118,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpPhone" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="142dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="181dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
