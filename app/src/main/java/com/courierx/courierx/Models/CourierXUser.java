@@ -19,6 +19,7 @@ public class CourierXUser {
     private String lastName;
     private String phoneNumber;
     private String address;
+    private String role;
     private List<Package> sentPackages;
     private List<Package> recievedPackages;
     private List<CreditLog> creditLog;

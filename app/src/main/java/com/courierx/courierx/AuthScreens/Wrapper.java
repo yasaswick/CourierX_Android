@@ -7,10 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.courierx.courierx.EntryPoints.AdminMain;
+import com.courierx.courierx.EntryPoints.DeliveryMain;
+import com.courierx.courierx.EntryPoints.UserMain;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseRealtime;
+import com.courierx.courierx.Splash;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +40,7 @@ public class Wrapper extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         firebaseRealtime = new FirebaseRealtime();
-        //getUserDetails();
+        splashView();
         if (currentUser != null){
             firebaseRealtime.getUserDetails();
             DatabaseReference myRef = database.getReference("user").child(currentUser.getUid());
@@ -45,15 +49,23 @@ public class Wrapper extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     courierXUser = dataSnapshot.getValue(CourierXUser.class);
-                    Log.d("TAG", "Value is: " + courierXUser);
-                    if (courierXUser.getFirstName() != null) {
+                    String userRole = courierXUser.getRole();
+                    Log.d("TAG", "Value is: " + userRole);
+                    if (userRole.equals("admin")) {
                         Log.d("TAG", "have user");
-                        Intent intent = new Intent(Wrapper.this, Selector.class);
+                        Intent intent = new Intent(Wrapper.this, AdminMain.class);
                         startActivity(intent);
                         Wrapper.this.finish();
-                    }else {
-                        Log.d("TAG", "no user");
-
+                    }else if (userRole.equals("delivery")) {
+                        Log.d("TAG", "have user");
+                        Intent intent2 = new Intent(Wrapper.this, DeliveryMain.class);
+                        startActivity(intent2);
+                        Wrapper.this.finish();
+                    }else if (userRole.equals("user")) {
+                        Log.d("TAG", "have user");
+                        Intent intent3 = new Intent(Wrapper.this, UserMain.class);
+                        startActivity(intent3);
+                        Wrapper.this.finish();
                     }
 
                 }
@@ -72,8 +84,11 @@ public class Wrapper extends AppCompatActivity {
 
     }
 
-
-
+    void splashView(){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.wrapper_frame, new Splash());
+        ft.commit();
+    }
 
     void InflateViewLogin(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
