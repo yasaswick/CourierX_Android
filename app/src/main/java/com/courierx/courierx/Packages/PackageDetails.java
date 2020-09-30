@@ -41,8 +41,8 @@ public class PackageDetails extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Package pkg = new Package("23123","sdfasdf",23,"11/11/2020",true);
-                myRef.setValue(pkg);
+                //Package pkg = new Package("23123","sdfasdf",23,"11/11/2020",true , false);
+               // myRef.setValue(pkg);
             }
         });
 
