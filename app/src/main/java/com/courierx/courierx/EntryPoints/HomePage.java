@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
@@ -27,6 +28,7 @@ public class HomePage extends Fragment {
     CourierXUser user;
     Button sendTrackedPackage;
     UserDetailsSingleton userDetailsSingleton;
+    UserDataCallback userDataCallback;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class HomePage extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         Button sendPackage = view.findViewById(R.id.send_pacakge_btn);
-        TextView UserName = view.findViewById(R.id.textViewName);
+        final TextView UserName = view.findViewById(R.id.textViewName);
         Log.d("TAG", "Value is: " + user);
         UserName.setText(userDetailsSingleton.getCourierXUser().getFirstName());
 
@@ -52,8 +54,18 @@ public class HomePage extends Fragment {
                 FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
                 firebaseAuthentication.logOut(getContext());
 
+
             }
         });
+
+
+        userDataCallback = new UserDataCallback() {
+            @Override
+            public void callback(CourierXUser courierXUser) {
+                UserName.setText(courierXUser.getFirstName());
+            }
+        };
+
         return view;
 
     }

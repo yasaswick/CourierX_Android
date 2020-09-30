@@ -2,6 +2,7 @@ package com.courierx.courierx.Services;
 
 import android.util.Log;
 
+import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.Models.Package;
@@ -24,6 +25,7 @@ public class FirebaseRealtime {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("user");
     DatabaseReference packageRef = database.getReference("package");
+    private UserDataCallback userDataCallback;
     private CourierXUser courierXUser;
 
     public String uid;
@@ -61,6 +63,9 @@ public class FirebaseRealtime {
                 courierXUser = dataSnapshot.getValue(CourierXUser.class);
                 Log.d("TAG", "Value is: " + courierXUser);
                 createUserSingleton(courierXUser);
+                if(userDataCallback!=null){
+                    userDataCallback.callback(courierXUser);
+                }
 
             }
 
@@ -75,6 +80,10 @@ public class FirebaseRealtime {
     public void createUserSingleton(CourierXUser courierXUser){
         UserDetailsSingleton userDetailsSingleton = UserDetailsSingleton.getInstance();
         userDetailsSingleton.setCourierXUser(courierXUser);
+    }
+
+    public void setUserDataCallback(UserDataCallback userDataCallback) {
+        this.userDataCallback= userDataCallback;
     }
 
 }

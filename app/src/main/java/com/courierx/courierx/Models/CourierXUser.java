@@ -3,10 +3,11 @@ package com.courierx.courierx.Models;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Data
 public class CourierXUser {
@@ -22,5 +23,10 @@ public class CourierXUser {
     private List<Package> recievedPackages;
     private List<CreditLog> creditLog;
     private String balance;
+
+
+    public CourierXUser(){
+
+    }
 
 }

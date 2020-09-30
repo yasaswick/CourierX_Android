@@ -5,11 +5,11 @@
         android:title="Home"
         android:icon="@drawable/ic_home" />
     <item
-        android:id="@+id/adminSearch"
+        android:id="@+id/userPackages"
         android:title="Search"
         android:icon="@drawable/ic_search"/>
     <item
-        android:id="@+id/adminSettings"
+        android:id="@+id/userProfile"
         android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>
