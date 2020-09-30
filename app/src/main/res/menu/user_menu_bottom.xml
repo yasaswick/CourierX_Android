@@ -6,10 +6,10 @@
         android:icon="@drawable/ic_home" />
     <item
         android:id="@+id/userPackages"
-        android:title="Search"
-        android:icon="@drawable/ic_search"/>
+        android:title="Packages"
+        android:icon="@drawable/ic_baseline_unarchive_24"/>
     <item
         android:id="@+id/userProfile"
-        android:title="Settings"
-        android:icon="@drawable/ic_baseline_settings_24"/>
+        android:title="Profile"
+        android:icon="@drawable/ic_outline_account_circle_24"/>
 </menu>

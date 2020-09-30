@@ -2,65 +2,66 @@ package com.courierx.courierx.Admin;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AdminHome#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AdminHome extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    FirebaseRecyclerOptions<CourierXUser> userListOptions;
+    FirebaseRecyclerAdapter<CourierXUser , UserListViewHolder > userListAdapter;
+    DatabaseReference ref;
+    private RecyclerView userListRecycler;
 
-    public AdminHome() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AdminHome.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AdminHome newInstance(String param1, String param2) {
-        AdminHome fragment = new AdminHome();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_home, container, false);
+
+        ref = FirebaseDatabase.getInstance().getReference().child("user");
+        View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
+
+        userListRecycler = view.findViewById(R.id.userListRecycler);
+        userListRecycler.setHasFixedSize(true);
+        userListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        userListOptions = new FirebaseRecyclerOptions.Builder<CourierXUser>().setQuery(ref , CourierXUser.class).build();
+        userListAdapter = new FirebaseRecyclerAdapter<CourierXUser, UserListViewHolder>(userListOptions) {
+            @Override
+            protected void onBindViewHolder(@NonNull UserListViewHolder holder, int position, @NonNull CourierXUser model) {
+
+                holder.uid.setText(model.getUid());
+
+            }
+
+            @NonNull
+            @Override
+            public UserListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.delivery_list_card , parent , false);
+
+                return new UserListViewHolder(recyclerview);
+
+            }
+        };
+
+        userListAdapter.startListening();
+        userListRecycler.setAdapter(userListAdapter);
+
+        return view;
+
     }
 }
