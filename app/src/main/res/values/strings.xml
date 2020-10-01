@@ -14,7 +14,6 @@
     <string name="added_date">Added Date</string>
     <string name="picked_up_date">Picked Up Date</string>
     <string name="delivery_details">Delivery Details</string>
-    <string name="package_id">Package ID</string>
     <string name="last_tracked_location">Last Tracked Location</string>
     <string name="sheduled_date">Sheduled Date</string>
     <string name="track_id">Track ID</string>
@@ -32,5 +31,11 @@
     <string name="xu345907n65d">XU345907N65D</string>
     <string name="tracking_id">Tracking ID:</string>
     <string name="update_status">Update Status</string>
+    <string name="select_recepient">Select Recipient</string>
+    <string name="please_enter_the_user_id_of_the_recepient">Please enter the User ID of the Recipient</string>
+    <string name="search">Search</string>
+    <string name="search_2">SEARCH</string>
+    <string name="package_id">Package ID</string>
+    <string name="package_discription">Package Discription</string>
 
 </resources>
