@@ -70,7 +70,7 @@
         tools:text="Account No" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/locationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"

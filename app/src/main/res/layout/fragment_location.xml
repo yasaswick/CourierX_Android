@@ -111,19 +111,6 @@
         app:layout_constraintVertical_bias="0.758" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tracking ID:"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.265" />
-
-    <TextView
         android:id="@+id/textView16"
         android:layout_width="225dp"
         android:layout_height="57dp"
@@ -137,20 +124,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <TextView
-        android:id="@+id/textView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XU345907N65D"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.266" />
-
-    <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/packageid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LSADAD234234"
@@ -212,7 +186,7 @@
         app:layout_constraintVertical_bias="0.436" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/locationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pending"

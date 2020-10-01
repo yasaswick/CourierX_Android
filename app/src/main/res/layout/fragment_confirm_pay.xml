@@ -119,7 +119,7 @@
         tools:text="                            " />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/setDeliveryDoneBtn"
         android:layout_width="111dp"
         android:layout_height="48dp"
         android:backgroundTint="#5D71E3"

@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Package {
+public class PackageDetails {
     private String sender;
     private String receiver;
     private String note;
     private String packageId;
+    private String pickDate;
+    private String status;
     private String description;
     private Float weight;
     private String scheduledDate;

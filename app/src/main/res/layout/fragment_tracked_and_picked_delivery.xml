@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.721" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/packageid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -138,7 +138,7 @@
         app:layout_constraintVertical_bias="0.455" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/locationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/last_tracked_location"
