@@ -6,13 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.courierx.courierx.Admin.UserListViewHolder;
-import com.courierx.courierx.Models.CourierXUser;
+import com.courierx.courierx.Packages.ToMeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -35,8 +32,6 @@ public class UserPackages extends Fragment {
         toMeListRecycler = view.findViewById(R.id.to_me_recycler_view);
         toMeListRecycler.setHasFixedSize(true);
         toMeListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         toMeListOptions = new FirebaseRecyclerOptions.Builder<Package>().setQuery(ref , Package.class).build();
         toMeListAdapter = new FirebaseRecyclerAdapter<Package, ToMeViewHolder>(toMeListOptions) {
             @NonNull
@@ -44,12 +39,11 @@ public class UserPackages extends Fragment {
             public ToMeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_package_list_card , parent , false);
                 return new ToMeViewHolder(recyclerview);
-
             }
 
             @Override
             protected void onBindViewHolder(@NonNull ToMeViewHolder holder, int position, @NonNull Package model) {
-                    holder.pakgeid.setText(model.getPackageId());
+                holder.pakgeid.setText(model.getPackageId());
             }
         };
 

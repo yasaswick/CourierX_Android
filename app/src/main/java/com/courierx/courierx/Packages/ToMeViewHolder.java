@@ -1,4 +1,4 @@
-package com.courierx.courierx;
+package com.courierx.courierx.Packages;
 
 import android.view.View;
 import android.widget.Button;
@@ -7,9 +7,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.courierx.courierx.R;
+
 public class ToMeViewHolder extends RecyclerView.ViewHolder {
 
-    TextView pakgeid, pakgedis;
+    public TextView pakgeid, pakgedis;
 
     public ToMeViewHolder(@NonNull View itemView) {
         super(itemView);
