@@ -43,16 +43,15 @@ public class AdminHome extends Fragment {
         userListAdapter = new FirebaseRecyclerAdapter<CourierXUser, UserListViewHolder>(userListOptions) {
             @Override
             protected void onBindViewHolder(@NonNull UserListViewHolder holder, int position, @NonNull CourierXUser model) {
-
                 holder.uid.setText(model.getUid());
+                holder.balance.setText(model.getBalance().toString() + " LKR");
+                holder.name.setText(model.getFirstName() + " " + model.getLastName() );
 
             }
-
             @NonNull
             @Override
             public UserListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.delivery_list_card , parent , false);
-
+                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list_card , parent , false);
                 return new UserListViewHolder(recyclerview);
 
             }

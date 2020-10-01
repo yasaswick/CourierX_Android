@@ -1,5 +1,7 @@
 package com.courierx.courierx.Models;
 
+import com.courierx.courierx.AuthScreens.Login;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +25,7 @@ public class CourierXUser {
     private List<Package> sentPackages;
     private List<Package> recievedPackages;
     private List<CreditLog> creditLog;
-    private String balance;
+    private Long balance;
 
 
     public CourierXUser(){

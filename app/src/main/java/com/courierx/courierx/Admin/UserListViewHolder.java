@@ -10,12 +10,15 @@ import com.courierx.courierx.R;
 
 public class UserListViewHolder extends RecyclerView.ViewHolder {
 
-    TextView uid;
+    TextView name , uid, balance;
+
 
     public UserListViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        uid = itemView.findViewById(R.id.card_user_id);
+        name = itemView.findViewById(R.id.user_card_name);
+        uid = itemView.findViewById(R.id.user_card_uid);
+        balance = itemView.findViewById(R.id.user_card_balance);
 
 
     }
