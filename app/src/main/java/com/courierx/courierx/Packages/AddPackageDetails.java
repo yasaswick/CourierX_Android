@@ -14,7 +14,7 @@ import com.courierx.courierx.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class PackageDetails extends Fragment {
+public class AddPackageDetails extends Fragment {
 
     EditText description, weight, sheduledDate;
     Button button2;
@@ -40,7 +40,7 @@ public class PackageDetails extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //PackageDetails pkg = new PackageDetails("23123","sdfasdf",23,"11/11/2020",true , false);
+                //AddPackageDetails pkg = new AddPackageDetails("23123","sdfasdf",23,"11/11/2020",true , false);
                // myRef.setValue(pkg);
             }
         });
