@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
         android:layout_marginBottom="140dp"
-        android:text="Delivery details"
+        android:text="DELIVERY DETAILS"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/deliveryman_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"

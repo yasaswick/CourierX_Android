@@ -60,7 +60,6 @@ public class DeliverymanHome extends Fragment {
         deliveryListAdapter.startListening();
         deliveryListRecycler.setAdapter(deliveryListAdapter);
 
-
         return view;
     }
 }
