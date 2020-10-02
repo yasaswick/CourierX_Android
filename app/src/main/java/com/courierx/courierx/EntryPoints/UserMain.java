@@ -17,6 +17,7 @@ import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseRealtime;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class UserMain extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class UserMain extends AppCompatActivity {
         Log.d("TAG", "Changed!!" + userDetailsSingleton.getCourierXUser().getLastName());
 
 
-
+        setUpNavigation();
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
     findViewById(R.id.menuIcon).setOnClickListener(new View.OnClickListener() {
         @Override
@@ -55,4 +56,13 @@ public class UserMain extends AppCompatActivity {
     });
 
     }
+
+
+
+    public void setUpNavigation(){
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view_user);
+        NavController navController = Navigation.findNavController(findViewById(R.id.navHostFragment_user));
+        NavigationUI.setupWithNavController(bottomNavigationView , navController );
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.courierx.courierx.Packages;
+package com.courierx.courierx;
 
 import android.os.Bundle;
 
@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.courierx.courierx.Models.Package;
-import com.courierx.courierx.R;
+import com.courierx.courierx.Packages.ToMeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.courierx.courierx.Models.Package;
 
-public class ToMe extends Fragment {
+public class UserPackages extends Fragment {
 
     FirebaseRecyclerOptions<Package> toMeListOptions;
     FirebaseRecyclerAdapter<Package , ToMeViewHolder> toMeListAdapter;
