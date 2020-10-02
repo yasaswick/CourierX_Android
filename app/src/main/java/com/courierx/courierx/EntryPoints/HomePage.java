@@ -43,7 +43,7 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        Button sendPackage = view.findViewById(R.id.send_pacakge_btn);
+        final Button sendPackage = view.findViewById(R.id.send_pacakge_btn);
         final TextView UserName = view.findViewById(R.id.textViewName);
         Log.d("TAG", "Value is: " + user);
         UserName.setText(userDetailsSingleton.getCourierXUser().getFirstName());
@@ -51,8 +51,9 @@ public class HomePage extends Fragment {
         sendPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
-                firebaseAuthentication.logOut(getContext());
+//                FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
+//                firebaseAuthentication.logOut(getContext());
+                sendPackage();
 
 
             }
