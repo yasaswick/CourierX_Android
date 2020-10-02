@@ -38,7 +38,7 @@
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get set delivery"
+        android:text="GET SET DELIVERY"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.808" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/setDeliveryDoneBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.808" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/getSetPackageID"
         android:layout_width="232dp"
         android:layout_height="59dp"
         android:autofillHints=""

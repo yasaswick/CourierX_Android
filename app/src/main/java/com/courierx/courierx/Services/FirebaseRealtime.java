@@ -5,7 +5,7 @@ import android.util.Log;
 import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.CreditLog;
-import com.courierx.courierx.Models.Package;
+import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +38,7 @@ public class FirebaseRealtime {
     }
 
 
-    public void addPackage(Package pkg){
+    public void addPackage(PackageDetails pkg){
 
     }
 
