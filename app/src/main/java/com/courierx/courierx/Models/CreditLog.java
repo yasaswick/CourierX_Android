@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreditLog {
     private String date;
-    private Float amount;
+    private Long amount;
     private String type;
 }

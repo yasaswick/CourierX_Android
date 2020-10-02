@@ -15,6 +15,7 @@ public class PackageDetails {
     private String sender;
     private String receiver;
     private String note;
+    private String pickedDate;
     private String packageId;
     private String pickDate;
     private String status;
@@ -23,5 +24,6 @@ public class PackageDetails {
     private String scheduledDate;
     private Boolean fragile;
     private Boolean isTracked;
+    private String status;
     private List<TrackInfo> trackInfoList;
 }

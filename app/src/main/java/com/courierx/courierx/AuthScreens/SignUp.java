@@ -13,9 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.courierx.courierx.Models.CourierXUser;
+import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseAuthentication;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 
 public class SignUp extends Fragment {
@@ -68,6 +71,13 @@ public class SignUp extends Fragment {
                 courierXUser.setFirstName(fname.getText().toString());
                 courierXUser.setLastName(lname.getText().toString());
                 courierXUser.setAddress(address.getText().toString());
+                courierXUser.setRole("user");
+                courierXUser.setBalance((long) 1000.00);
+                CreditLog creditLog = new CreditLog();
+                creditLog.setDate("11/11/2010");
+                creditLog.setAmount((long)1000);
+                creditLog.setType("Joining Bonus");
+                courierXUser.setCreditLog((List<CreditLog>) creditLog);
                 firebaseAuthentication.registerUser(courierXUser,pswd,getContext());
             }
         });
