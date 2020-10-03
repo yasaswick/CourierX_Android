@@ -76,7 +76,7 @@ public class HomePage extends Fragment {
 
     void sendPackage(){
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.navHostFragment_user, new SearchRecepient());
+        ft.replace(R.id.navHostFragment_user, new AddPackageDetails());
         ft.commit();
     }
 

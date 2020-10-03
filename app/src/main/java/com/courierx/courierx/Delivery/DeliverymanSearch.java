@@ -38,7 +38,6 @@ public class DeliverymanSearch extends Fragment {
                data.putString("packageID" , packageID);
                detailedViewFragment();
 
-
            }
        });
 
