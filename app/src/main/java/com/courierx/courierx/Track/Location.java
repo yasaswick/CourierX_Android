@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.courierx.courierx.Delivery.DeliveryListViewHolder;
@@ -20,6 +22,7 @@ import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
+import com.courierx.courierx.UpdateLocationDetails;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,8 @@ public class Location extends Fragment {
     TextView locationStatus;
     TextView packageId;
     UserDetailsSingleton userDetailsSingleton ;
+    Bundle data;
+    Button btn;
 
     FirebaseRecyclerOptions<TrackInfo> deliveryLocationListOptions;
     FirebaseRecyclerAdapter<TrackInfo, DeliveryLocationListViewHolder> deliveryLocationListAdapter;
@@ -56,22 +61,25 @@ public class Location extends Fragment {
 
         locationStatus = view.findViewById(R.id.locationStatus);
         packageId = view.findViewById(R.id.packageid);
-        Bundle data = this.getArguments();
+        btn = view.findViewById(R.id.update_location_btn);
+        data = this.getArguments();
         if(data != null){
             st = data.getString("packageID");
         }
         Log.d("test","your package is tracked "+ st);
 
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("packages").child(st);
-        //Query query=mDatabase.orderByChild("packageId").equalTo(st);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("packages");
+        Query query=mDatabase.orderByChild("packageId").equalTo(st);
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("data" , "value  : " + snapshot.getValue(PackageDetails.class).getStatus());
-                locationStatus.setText(snapshot.getValue(PackageDetails.class).getStatus());
-                packageId.setText(snapshot.getValue(PackageDetails.class).getPackageId());
+               // Log.d("data" , "value  : " + snapshot.getValue(PackageDetails.class).getStatus());
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    packageId.setText(ds.getValue(PackageDetails.class).getPackageId());
+                }
+
             }
 
             @Override
@@ -80,7 +88,7 @@ public class Location extends Fragment {
             }
         });
 
-        ref = FirebaseDatabase.getInstance().getReference("packages").child(st).child("trackInfoList");
+        ref = FirebaseDatabase.getInstance().getReference("packages").child("-MIdmXXtUQY5xqATlci5").child("trackInfo");
 
         deliveryLocationListRecycler = view.findViewById(R.id.last_loction_list_recyclerview);
         deliveryLocationListRecycler.setHasFixedSize(true);
@@ -105,10 +113,28 @@ public class Location extends Fragment {
             }
         } ;
 
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detailedViewFragment();
+            }
+        });
+
         deliveryLocationListAdapter.startListening();
         deliveryLocationListRecycler.setAdapter(deliveryLocationListAdapter);
 
         return view;
+    }
+
+
+
+
+    public void detailedViewFragment(){
+        UpdateLocationDetails updateLocationDetails = new UpdateLocationDetails();
+        updateLocationDetails.setArguments(data);
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.bottom_nav_fragment_delivery, updateLocationDetails);
+        ft.commit();
     }
 
 
