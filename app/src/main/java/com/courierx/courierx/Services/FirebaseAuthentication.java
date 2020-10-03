@@ -42,7 +42,7 @@ public class FirebaseAuthentication {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("auth", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(mContext , Selector.class);
+                            Intent intent = new Intent(mContext , Wrapper.class);
                             mContext.startActivity(intent);
                             ((Activity) mContext).finish();
                         } else {
@@ -75,6 +75,11 @@ public class FirebaseAuthentication {
                             FirebaseUser user = mAuth.getCurrentUser();
                             courierXUseruser.setUid(user.getUid());
                             firebaseRealtime.registerUser(courierXUseruser);
+                            Toast.makeText(activity, "User Created!.",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(mContext , Wrapper.class);
+                            mContext.startActivity(intent);
+                            ((Activity) mContext).finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
