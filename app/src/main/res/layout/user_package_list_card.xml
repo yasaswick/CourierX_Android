@@ -12,32 +12,31 @@
         android:layout_height="49dp">
 
         <TextView
-            android:id="@+id/pkgid"
-            android:layout_width="99dp"
-            android:layout_height="29dp"
+            android:id="@+id/packageID"
+            android:layout_width="181dp"
+            android:layout_height="17dp"
             android:text="@string/package_id"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.062"
+            app:layout_constraintHorizontal_bias="0.084"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.515"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/pkgdiscription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="20dp"
             android:text="@string/package_discription"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintHorizontal_bias="0.812"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.481"
+            app:layout_constraintVertical_bias="0.482"
             tools:ignore="MissingConstraints" />
 
         <ImageView

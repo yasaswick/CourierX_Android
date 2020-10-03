@@ -1,7 +1,6 @@
 package com.courierx.courierx.Packages;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ public class ToMeViewHolder extends RecyclerView.ViewHolder {
     public ToMeViewHolder(@NonNull View itemView) {
         super(itemView);
         
-        pakgeid = itemView.findViewById(R.id.pkgid);
+        pakgeid = itemView.findViewById(R.id.packageID);
         pakgedis = itemView.findViewById(R.id.pkgdiscription);
 
     }

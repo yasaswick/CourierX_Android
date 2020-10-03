@@ -6,34 +6,45 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+
+import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.Packages.ToMeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.courierx.courierx.Models.Package;
+import com.courierx.courierx.Models.PackageDetails;
+import com.google.firebase.database.Query;
 
 public class UserPackages extends Fragment {
 
-    FirebaseRecyclerOptions<Package> toMeListOptions;
-    FirebaseRecyclerAdapter<Package , ToMeViewHolder> toMeListAdapter;
+    FirebaseRecyclerOptions<PackageDetails> toMeListOptions;
+    FirebaseRecyclerAdapter<PackageDetails , ToMeViewHolder> toMeListAdapter;
     DatabaseReference ref;
     private RecyclerView toMeListRecycler;
-
+    private UserDetailsSingleton userDetailsSingleton;
+    private Query query;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ref = FirebaseDatabase.getInstance().getReference().child("packages");
+        userDetailsSingleton = UserDetailsSingleton.getInstance();
+        query = ref.orderByChild("sender").equalTo(userDetailsSingleton.getCourierXUser().getUid());
         View view =  inflater.inflate(R.layout.fragment_user_packages, container, false);
         toMeListRecycler = view.findViewById(R.id.to_me_recycler_view);
         toMeListRecycler.setHasFixedSize(true);
         toMeListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        toMeListOptions = new FirebaseRecyclerOptions.Builder<Package>().setQuery(ref , Package.class).build();
-        toMeListAdapter = new FirebaseRecyclerAdapter<Package, ToMeViewHolder>(toMeListOptions) {
+        Switch sButton = view.findViewById(R.id.mypackageswitch);
+        toMeListOptions = new FirebaseRecyclerOptions.Builder<PackageDetails>().setQuery(query , PackageDetails.class).build();
+        toMeListAdapter = new FirebaseRecyclerAdapter<PackageDetails, ToMeViewHolder>(toMeListOptions) {
             @NonNull
             @Override
             public ToMeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,10 +53,26 @@ public class UserPackages extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ToMeViewHolder holder, int position, @NonNull Package model) {
+            protected void onBindViewHolder(@NonNull ToMeViewHolder holder, int position, @NonNull PackageDetails model) {
                 holder.pakgeid.setText(model.getPackageId());
+                holder.pakgedis.setText(model.getDescription());
             }
         };
+        sButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+             if(b){
+                 query = ref.orderByChild("reciever").equalTo(userDetailsSingleton.getCourierXUser().getUid());
+                 toMeListOptions = new FirebaseRecyclerOptions.Builder<PackageDetails>().setQuery(query , PackageDetails.class).build();
+                 toMeListAdapter.updateOptions(toMeListOptions);
+             }else{
+                 query = ref.orderByChild("sender").equalTo(userDetailsSingleton.getCourierXUser().getUid());
+                 toMeListOptions = new FirebaseRecyclerOptions.Builder<PackageDetails>().setQuery(query , PackageDetails.class).build();
+                 toMeListAdapter.updateOptions(toMeListOptions);
+             }
+
+            }
+        });
 
         toMeListAdapter.startListening();
         toMeListRecycler.setAdapter(toMeListAdapter);

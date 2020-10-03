@@ -24,6 +24,5 @@ public class PackageDetails {
     private String scheduledDate;
     private Boolean fragile;
     private Boolean isTracked;
-    private String status;
     private List<TrackInfo> trackInfoList;
 }

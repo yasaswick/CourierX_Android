@@ -37,5 +37,8 @@
     <string name="search_2">SEARCH</string>
     <string name="package_id">Package ID</string>
     <string name="package_discription">Package Discription</string>
+    <string name="switch_to_me">Switch To Me</string>
+    <string name="switch_to_sent_packages">Switch to Sent Packages</string>
+    <string name="switch_to_received_packages">Switch to Received Packages</string>
 
 </resources>
