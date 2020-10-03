@@ -1,16 +1,23 @@
 package com.courierx.courierx.EntryPoints;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +33,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class UserMain extends AppCompatActivity {
+
 
     UserDetailsSingleton userDetailsSingleton;
 
@@ -47,10 +55,47 @@ public class UserMain extends AppCompatActivity {
 
          navUsername.setText(userDetailsSingleton.getCourierXUser().getFirstName() + " " + userDetailsSingleton.getCourierXUser().getLastName());
          navEmail.setText(userDetailsSingleton.getCourierXUser().getEmail());
-         navBalance.setText(userDetailsSingleton.getCourierXUser().getBalance().toString());
+         navBalance.setText(userDetailsSingleton.getCourierXUser().getBalance().toString() + " LKR" );
          navUid.setText(userDetailsSingleton.getCourierXUser().getUid());
 
         Log.d("TAG", "Changed!!" + userDetailsSingleton.getCourierXUser().getLastName());
+
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.shareUserID:
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, userDetailsSingleton.getCourierXUser().getUid());
+                        sendIntent.setType("text/plain");
+                        Intent shareIntent = Intent.createChooser(sendIntent, null);
+                        startActivity(shareIntent);
+                        return true;
+                    case R.id.supportPhone:
+                        String number = "+94717329369";
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:" +number));
+
+                        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                            startActivity(intent);
+                        } else {
+                            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
+                            Log.d("phone" , "no permission");
+                        }
+                        return true;
+
+
+
+
+                }
+
+                return true;
+            }
+        });
+
+
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override

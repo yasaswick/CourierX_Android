@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
-        android:id="@+id/homePage"
-        android:title="Home">
+        android:id="@+id/shareUserID"
+        android:title="Share User ID">
+    </item>
+
+    <item
+        android:id="@+id/editProfile"
+        android:title="Edit Profile">
     </item>
     <item
-        android:id="@+id/sendPackagePage"
-        android:title="Send Package">
+        android:id="@+id/githubPage"
+        android:title="Github Page">
     </item>
     <item
-        android:id="@+id/trackPackagePage"
-        android:title="Track Package">
+        android:id="@+id/supportPhone"
+        android:title="Customer Support">
     </item>
-    <item
-        android:id="@+id/myPackagePage"
-        android:title="My Packages">
-    </item>
-    <item
-        android:id="@+id/settingsPage"
-        android:title="Settings">
-    </item>
+
 
 
 </menu>

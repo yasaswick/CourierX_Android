@@ -44,7 +44,7 @@ public class AdminHome extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull UserListViewHolder holder, int position, @NonNull CourierXUser model) {
                 holder.uid.setText(model.getUid());
-                holder.balance.setText(model.getBalance().toString() + " LKR");
+               // holder.balance.setText(model.getBalance().toString() + " LKR");
                 holder.name.setText(model.getFirstName() + " " + model.getLastName() );
 
             }
