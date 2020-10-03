@@ -58,8 +58,8 @@ public class FirebaseRealtime {
 
     public void setPackageLocation(PackageDetails packageDetails , final TrackInfo trackInfo){
         //packageRef.child(packageDetails.getPackageId()).child("trackInfoList").setValue(trackInfo);
-
         Query query = packageRef.orderByChild("packageId").equalTo(packageDetails.getPackageId());
+        packageRef.child(packageDetails.getPackageId()).child("status").setValue(packageDetails.getStatus());
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -67,7 +67,6 @@ public class FirebaseRealtime {
                     List<TrackInfo> trackInfoList = new ArrayList<>();
                     trackInfoList.add(trackInfo);
                     ds.getRef().child("trackInfo").push().setValue(trackInfo);
-
                 }
             }
 
