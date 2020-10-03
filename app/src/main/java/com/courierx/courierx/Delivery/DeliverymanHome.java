@@ -50,7 +50,7 @@ public class DeliverymanHome extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull DeliveryListViewHolder holder, int position, @NonNull PackageDetails model) {
 
-                holder.packageid.setText(model.getSender());
+                holder.packageid.setText(model.getPackageId());
                 holder.status.setText(model.getStatus());
                 holder.date.setText(model.getPickDate());
 
