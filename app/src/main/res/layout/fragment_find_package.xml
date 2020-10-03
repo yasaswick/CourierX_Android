@@ -40,31 +40,33 @@
         android:text="The package is on its way, its latest location updates are as follows"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintTop_toBottomOf="@+id/tracking_id_user"
+        app:layout_constraintVertical_bias="0.019" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="331dp"
-        android:layout_height="204dp"
+        android:layout_width="270dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/annotation_2020_08_15_161707" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_tracking_recycler_view"
-        android:layout_width="339dp"
-        android:layout_height="264dp"
+        android:layout_width="376dp"
+        android:layout_height="358dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,9 +50,8 @@ public class UpdateLocationDetails extends Fragment {
                 PackageDetails packageDetails = new PackageDetails();
                 packageDetails.setPackageId(packageid);
                 TrackInfo trackInfo = new TrackInfo();
-                trackInfo.setDate("11/11/2020");
+                trackInfo.setDate((long) 1601727840);
                 trackInfo.setLocation(location.getText().toString());
-                trackInfo.setTime("12:12");
             firebaseRealtime.setPackageLocation(packageDetails,trackInfo);
             }
         });
