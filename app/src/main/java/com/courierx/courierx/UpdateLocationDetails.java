@@ -16,6 +16,7 @@ import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.Services.FirebaseRealtime;
 import com.courierx.courierx.Track.Location;
+import com.google.firebase.database.ServerValue;
 
 
 public class UpdateLocationDetails extends Fragment {
@@ -50,8 +51,8 @@ public class UpdateLocationDetails extends Fragment {
                 PackageDetails packageDetails = new PackageDetails();
                 packageDetails.setPackageId(packageid);
                 TrackInfo trackInfo = new TrackInfo();
-                trackInfo.setDate((long) 1601727840);
                 trackInfo.setLocation(location.getText().toString());
+                trackInfo.setDate(System.currentTimeMillis());
             firebaseRealtime.setPackageLocation(packageDetails,trackInfo);
             }
         });

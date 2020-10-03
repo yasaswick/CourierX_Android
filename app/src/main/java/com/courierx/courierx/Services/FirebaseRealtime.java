@@ -31,6 +31,7 @@ public class FirebaseRealtime {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("user");
     DatabaseReference packageRef = database.getReference("packages");
+    DatabaseReference trackInfoRef = database.getReference("packages").child("trackInfo");
     private UserDataCallback userDataCallback;
     private CourierXUser courierXUser;
 
@@ -66,7 +67,7 @@ public class FirebaseRealtime {
                     List<TrackInfo> trackInfoList = new ArrayList<>();
                     trackInfoList.add(trackInfo);
                     ds.getRef().child("trackInfo").push().setValue(trackInfo);
-                    Log.d("Tag" , "data added");
+
                 }
             }
 
