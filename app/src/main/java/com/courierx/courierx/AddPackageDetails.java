@@ -1,4 +1,4 @@
-package com.courierx.courierx.Packages;
+package com.courierx.courierx.ViewHolders;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -10,12 +10,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.courierx.courierx.Models.Package;
+import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class PackageDetails extends Fragment {
+public class AddPackageDetails extends Fragment {
 
     EditText description, weight, sheduledDate;
     Button button2;
