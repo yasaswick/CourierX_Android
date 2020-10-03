@@ -87,7 +87,7 @@
         tools:text="                                  " />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/user_tracking_id"
         android:layout_width="142dp"
         android:layout_height="36dp"
         android:ems="10"

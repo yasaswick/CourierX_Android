@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.053" />
 
     <TextView
-        android:id="@+id/packageid"
+        android:id="@+id/location_packageId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LSADAD234234"
@@ -71,21 +71,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/last_loction_list_recyclerview"
-        android:layout_width="413dp"
-        android:layout_height="362dp"
+        android:layout_width="396dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-1dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/update_location_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update Details"
-        app:layout_constraintBaseline_toBaselineOf="@+id/packageid"
+        android:layout_width="111dp"
+        android:layout_height="45dp"
+        android:text="Update"
+        app:layout_constraintBaseline_toBaselineOf="@+id/location_packageId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
