@@ -18,6 +18,7 @@ import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseAuthentication;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -73,11 +74,13 @@ public class SignUp extends Fragment {
                 courierXUser.setAddress(address.getText().toString());
                 courierXUser.setRole("user");
                 courierXUser.setBalance((long) 1000.00);
-                CreditLog creditLog = new CreditLog();
-                creditLog.setDate("11/11/2010");
-                creditLog.setAmount((long)1000);
-                creditLog.setType("Joining Bonus");
-                courierXUser.setCreditLog((List<CreditLog>) creditLog);
+                CreditLog credit= new CreditLog();
+                credit.setDate("11/11/2010");
+                credit.setAmount((long)1000);
+                credit.setType("Joining Bonus");
+                List<CreditLog> creditLog = new ArrayList<CreditLog>();
+                creditLog.add(credit);
+                courierXUser.setCreditLog(creditLog);
                 firebaseAuthentication.registerUser(courierXUser,pswd,getContext());
             }
         });
