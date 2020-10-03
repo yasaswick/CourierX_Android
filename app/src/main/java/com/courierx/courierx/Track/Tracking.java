@@ -2,8 +2,11 @@ package com.courierx.courierx.Track;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +14,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.courierx.courierx.Delivery.DeliveryLocationListViewHolder;
+import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.R;
 import com.courierx.courierx.User.FindPackage;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Tracking extends Fragment {
+
     private EditText getSetPackageId;
     private Button setTrackingBtn;
     private Bundle data;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +49,7 @@ public class Tracking extends Fragment {
 
             }
         });
+
         return view;
     }
 
