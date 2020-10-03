@@ -1,4 +1,4 @@
-package com.courierx.courierx.Packages;
+package com.courierx.courierx;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -18,7 +18,7 @@ public class AddPackageDetails extends Fragment {
 
     EditText description, weight, sheduledDate;
     Button button2;
-    CheckBox fragile;
+    CheckBox fragile, track;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     String key = database.getReference("quiz").push().getKey();
@@ -34,6 +34,7 @@ public class AddPackageDetails extends Fragment {
         weight = view.findViewById(R.id.weight);
         sheduledDate = view.findViewById(R.id.sheduleDate);
         fragile = view.findViewById(R.id.fragile);
+        track = view.findViewById(R.id.track);
         button2 = view.findViewById(R.id.button2);
 
 
@@ -48,6 +49,15 @@ public class AddPackageDetails extends Fragment {
                 pkg.setScheduledDate(sheduledDate.getText().toString());
                 if(fragile.isChecked()){
                     pkg.setFragile(Boolean.TRUE);
+                }
+                else {
+                    pkg.setFragile(Boolean.FALSE);
+                }
+                if(track.isChecked()){
+                    pkg.setIsTracked(Boolean.TRUE);
+                }
+                else {
+                    pkg.setIsTracked(Boolean.FALSE);
                 }
                 myRef.setValue(pkg);
             }
