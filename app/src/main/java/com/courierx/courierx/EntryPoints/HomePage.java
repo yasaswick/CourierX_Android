@@ -16,8 +16,10 @@ import android.widget.TextView;
 import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.UserDetailsSingleton;
+import com.courierx.courierx.Packages.AddPackageDetails;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Profile.Settings;
+import com.courierx.courierx.SearchRecepient;
 import com.courierx.courierx.Services.FirebaseAuthentication;
 import com.courierx.courierx.Services.FirebaseRealtime;
 
@@ -74,7 +76,7 @@ public class HomePage extends Fragment {
 
     void sendPackage(){
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.wrapper_frame, new Settings());
+        ft.replace(R.id.navHostFragment_user, new SearchRecepient());
         ft.commit();
     }
 
