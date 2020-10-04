@@ -11,12 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ViewCreditLog"></activity>
+        <activity android:name=".AddPayment" />
         <activity android:name=".EntryPoints.AdminMain" />
         <activity android:name=".AuthScreens.Selector" />
         <activity android:name=".EntryPoints.DeliveryMain" />

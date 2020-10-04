@@ -10,6 +10,11 @@
         android:title="Search"
         android:icon="@drawable/ic_search"/>
     <item
+        android:id="@+id/adminFeedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback_24"/>
+
+    <item
         android:id="@+id/adminSettings"
         android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"/>

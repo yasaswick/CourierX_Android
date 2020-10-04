@@ -75,7 +75,7 @@ public class SignUp extends Fragment {
                 courierXUser.setRole("user");
                 courierXUser.setBalance((long) 1000.00);
                 CreditLog credit= new CreditLog();
-                credit.setDate("11/11/2010");
+                credit.setDate(System.currentTimeMillis());
                 credit.setAmount((long)1000);
                 credit.setType("Joining Bonus");
                 List<CreditLog> creditLog = new ArrayList<CreditLog>();

@@ -51,12 +51,13 @@ public class FirebaseRealtime {
 
     }
 
-    public void addCredit(Float amount, CreditLog creditLog){
-        userRef.child(currentUser.getUid()).child("creditLog").setValue(creditLog);
+    public void addCredit(Long amount, CreditLog creditLog){
+        userRef.child(currentUser.getUid()).child("creditLog").push().setValue(creditLog);
         Map<String , Object> credit = new HashMap<>();
         credit.put("balance" , amount);
         userRef.child(currentUser.getUid()).updateChildren(credit);
     }
+
 
     public void setPackageLocation(PackageDetails packageDetails , final TrackInfo trackInfo){
         //packageRef.child(packageDetails.getPackageId()).child("trackInfoList").setValue(trackInfo);
