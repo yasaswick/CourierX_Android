@@ -38,6 +38,7 @@ public class AddPackageDetails extends Fragment {
         button2 = view.findViewById(R.id.button2);
 
 
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,16 +49,14 @@ public class AddPackageDetails extends Fragment {
                 pkg.setWeight(Float.valueOf(weight.getText().toString()));
                 pkg.setScheduledDate(sheduledDate.getText().toString());
                 if(fragile.isChecked()){
-                    pkg.setFragile(Boolean.TRUE);
+                    pkg.setFragile("true");
+                }else {
+                    pkg.setFragile("false");
                 }
-                else {
-                    pkg.setFragile(Boolean.FALSE);
-                }
-                if(track.isChecked()){
-                    pkg.setIsTracked(Boolean.TRUE);
-                }
-                else {
-                    pkg.setIsTracked(Boolean.FALSE);
+                if (track.isChecked()){
+                    pkg.setIsTracked("true");
+                }else {
+                    pkg.setIsTracked("false");
                 }
                 myRef.setValue(pkg);
             }
