@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.courierx.courierx.Models.PackageDetails;
@@ -25,6 +26,7 @@ public class UpdateLocationDetails extends Fragment {
     Button button;
     Bundle data;
     String packageid;
+    Switch sButton;
     FirebaseRealtime firebaseRealtime;
 
 
@@ -36,6 +38,7 @@ public class UpdateLocationDetails extends Fragment {
         button = view.findViewById(R.id.updateLocationBtn);
         firebaseRealtime = new FirebaseRealtime();
         TextView packageIdtext = view.findViewById(R.id.update_location_detail_packageid);
+        sButton = view.findViewById(R.id.switch1);
 
         data = this.getArguments();
         if(data != null){
@@ -43,22 +46,34 @@ public class UpdateLocationDetails extends Fragment {
             packageIdtext.setText(packageid);
         }
 
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PackageDetails packageDetails = new PackageDetails();
                 packageDetails.setPackageId(packageid);
                 TrackInfo trackInfo = new TrackInfo();
+                if(sButton.isChecked()){
+                    packageDetails.setStatus("Delivered");
+                }else{
+                    packageDetails.setStatus("Pending");
+                }
                 trackInfo.setLocation(location.getText().toString());
                 trackInfo.setDate(System.currentTimeMillis());
             firebaseRealtime.setPackageLocation(packageDetails,trackInfo);
+            detailedViewFragment();
             }
         });
 
-
         return view;
     }
+
+    public void detailedViewFragment(){
+        Location location = new Location();
+        location.setArguments(data);
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.bottom_nav_fragment_delivery, location);
+        ft.commit();
+    }
+
 
 }

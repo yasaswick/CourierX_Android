@@ -22,7 +22,7 @@ public class PackageDetails {
     private String description;
     private Float weight;
     private String scheduledDate;
-    private Boolean fragile;
-    private Boolean isTracked;
+    private String fragile;
+    private String isTracked;
     private List<TrackInfo> trackInfoList;
 }

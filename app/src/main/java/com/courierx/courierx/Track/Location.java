@@ -32,6 +32,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class Location extends Fragment {
     String st;
@@ -111,7 +115,12 @@ public class Location extends Fragment {
             protected void onBindViewHolder(@NonNull DeliveryLocationListViewHolder holder, int position, @NonNull TrackInfo model) {
 
                 holder.location.setText(model.getLocation());
-                holder.time.setText(model.getDate()+ " "+model.getTime());
+                Date date = new Date(model.getDate());
+                SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",
+                        Locale.getDefault());
+                String text = sfd.format(date);
+
+                holder.time.setText(text);
             }
         } ;
 
