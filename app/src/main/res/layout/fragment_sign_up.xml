@@ -177,6 +177,8 @@
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+
     <LinearLayout
         android:id="@+id/name_linear_lay"
         android:layout_width="match_parent"

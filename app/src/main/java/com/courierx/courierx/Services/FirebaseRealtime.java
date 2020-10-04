@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.CreditLog;
+import com.courierx.courierx.Models.Feedback;
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.Models.UserDetailsSingleton;
@@ -31,6 +32,7 @@ public class FirebaseRealtime {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("user");
     DatabaseReference packageRef = database.getReference("packages");
+    DatabaseReference feedbackRef = database.getReference("feedback");
     DatabaseReference trackInfoRef = database.getReference("packages").child("trackInfo");
     private UserDataCallback userDataCallback;
     private CourierXUser courierXUser;
@@ -97,7 +99,6 @@ public class FirebaseRealtime {
                 if(userDataCallback!=null){
                     userDataCallback.callback(courierXUser);
                 }
-
             }
 
             @Override
@@ -116,5 +117,24 @@ public class FirebaseRealtime {
     public void setUserDataCallback(UserDataCallback userDataCallback) {
         this.userDataCallback= userDataCallback;
     }
+
+    public  void updateUser(CourierXUser courierXUser){
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("address", courierXUser.getAddress());
+        updates.put("phone" , courierXUser.getPhoneNumber());
+        updates.put("firstName" , courierXUser.getFirstName());
+        updates.put("lastName" , courierXUser.getLastName());
+        userRef.child(currentUser.getUid()).updateChildren(updates);
+
+    }
+
+
+    public void addFeedback(Feedback feedback){
+        feedbackRef.push().setValue(feedback);
+    }
+
+
+
+
 
 }
