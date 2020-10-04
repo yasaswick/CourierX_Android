@@ -2,10 +2,13 @@ package com.courierx.courierx.Services;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.CreditLog;
-import com.courierx.courierx.Models.Package;
+import com.courierx.courierx.Models.PackageDetails;
+import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -13,9 +16,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FirebaseRealtime {
@@ -24,7 +30,8 @@ public class FirebaseRealtime {
     FirebaseUser currentUser;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("user");
-    DatabaseReference packageRef = database.getReference("package");
+    DatabaseReference packageRef = database.getReference("packages");
+    DatabaseReference trackInfoRef = database.getReference("packages").child("trackInfo");
     private UserDataCallback userDataCallback;
     private CourierXUser courierXUser;
 
@@ -38,7 +45,7 @@ public class FirebaseRealtime {
     }
 
 
-    public void addPackage(Package pkg){
+    public void addPackage(PackageDetails pkg){
 
     }
 
@@ -47,6 +54,30 @@ public class FirebaseRealtime {
         Map<String , Object> credit = new HashMap<>();
         credit.put("balance" , amount);
         userRef.child(currentUser.getUid()).updateChildren(credit);
+    }
+
+    public void setPackageLocation(PackageDetails packageDetails , final TrackInfo trackInfo){
+        //packageRef.child(packageDetails.getPackageId()).child("trackInfoList").setValue(trackInfo);
+        Query query = packageRef.orderByChild("packageId").equalTo(packageDetails.getPackageId());
+        packageRef.child(packageDetails.getPackageId()).child("status").setValue(packageDetails.getStatus());
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    List<TrackInfo> trackInfoList = new ArrayList<>();
+                    trackInfoList.add(trackInfo);
+                    ds.getRef().child("trackInfo").push().setValue(trackInfo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("TAG", databaseError.getMessage()); //Don't ignore errors!
+            }
+        };
+        query.addListenerForSingleValueEvent(valueEventListener);
+
+
     }
 
     public void registerUser(CourierXUser user){

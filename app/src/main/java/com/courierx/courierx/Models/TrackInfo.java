@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrackInfo {
-    String date;
+    String time;
+    Long date;
     String location;
 
 }

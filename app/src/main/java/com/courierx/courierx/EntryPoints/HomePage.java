@@ -16,10 +16,13 @@ import android.widget.TextView;
 import com.courierx.courierx.Interfaces.UserDataCallback;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.UserDetailsSingleton;
+import com.courierx.courierx.AddPackageDetails;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Profile.Settings;
+import com.courierx.courierx.SearchRecepient;
 import com.courierx.courierx.Services.FirebaseAuthentication;
 import com.courierx.courierx.Services.FirebaseRealtime;
+import com.courierx.courierx.Track.Tracking;
 
 public class HomePage extends Fragment {
 
@@ -43,7 +46,9 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        Button sendPackage = view.findViewById(R.id.send_pacakge_btn);
+        final Button sendPackage = view.findViewById(R.id.send_pacakge_btn);
+        final Button trackPackage = view.findViewById(R.id.send_tracked_package_btn);
+
         final TextView UserName = view.findViewById(R.id.textViewName);
         Log.d("TAG", "Value is: " + user);
         UserName.setText(userDetailsSingleton.getCourierXUser().getFirstName());
@@ -51,10 +56,19 @@ public class HomePage extends Fragment {
         sendPackage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
-                firebaseAuthentication.logOut(getContext());
+//                FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
+//                firebaseAuthentication.logOut(getContext());
+                sendPackage();
 
 
+            }
+        });
+
+
+        trackPackage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trackPackage();
             }
         });
 
@@ -73,7 +87,15 @@ public class HomePage extends Fragment {
 
     void sendPackage(){
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.wrapper_frame, new Settings());
+        ft.replace(R.id.navHostFragment_user, new AddPackageDetails());
+        ft.commit();
+    }
+
+
+
+    void trackPackage(){
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.navHostFragment_user, new Tracking());
         ft.commit();
     }
 

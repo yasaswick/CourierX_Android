@@ -46,24 +46,21 @@ public class Login extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         View v = inflater.inflate(R.layout.fragment_login, container, false);
         Button button = v.findViewById(R.id.loginBtn);
-        emailInput = v.findViewById(R.id.emailAddress);
-        passwordInput = v.findViewById(R.id.password);
+        emailInput = v.findViewById(R.id.signInInputEmail);
+        passwordInput = v.findViewById(R.id.signInInputPassword);
         signUpRedirect = v.findViewById(R.id.needAccountBtn);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                loginWithEmail();
             }
         });
-
         signUpRedirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 InflateViewSignUp();
             }
         });
-
 
         return v;
     }
@@ -73,24 +70,6 @@ public class Login extends Fragment {
         String psw = passwordInput.getText().toString();
         FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
         firebaseAuthentication.loginWithEmail(mail,psw, getContext());
-//        mAuth.signInWithEmailAndPassword(mail, psw)
-//                .addOnCompleteListener( getActivity(), new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d("auth", "signInWithEmail:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            Intent intent = new Intent(getContext() , Selector.class);
-//                            startActivity(intent);
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            Log.w("auth", "signInWithEmail:failure", task.getException());
-//                            Toast.makeText(getContext(), "Authentication failed.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
     }
 
 
