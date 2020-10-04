@@ -59,7 +59,6 @@ public class UserEditProfile extends Fragment {
         userProfileSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 courierXUser.setFirstName(fname.getText().toString());
                 courierXUser.setLastName(lname.getText().toString());
                 courierXUser.setPhoneNumber(phone.getText().toString());
@@ -67,6 +66,7 @@ public class UserEditProfile extends Fragment {
                 firebaseRealtime.updateUser(courierXUser);
                 Snackbar snackbar = Snackbar.make(view, "Updated Successfully", Snackbar.LENGTH_LONG);
                 snackbar.show();
+
             }
 
 

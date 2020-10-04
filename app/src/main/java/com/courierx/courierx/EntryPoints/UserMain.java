@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.courierx.courierx.AddFeedback;
 import com.courierx.courierx.AddPackageDetails;
 import com.courierx.courierx.AuthScreens.Wrapper;
 import com.courierx.courierx.Interfaces.UserDataCallback;
@@ -104,14 +105,24 @@ public class UserMain extends AppCompatActivity {
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/yasaswick/CourierX_Android"));
                         startActivity(browserIntent);
 
-
-                    case  R.id.editProfile:
+                    case R.id.addFeedback:
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.navHostFragment_user, new UserEditProfile());
+                        ft.replace(R.id.navHostFragment_user, new AddFeedback());
                         ft.addToBackStack(null);
                         ft.commit();
                         drawerLayout.closeDrawers();
                         return  true;
+
+
+                    case  R.id.editProfile:
+                        FragmentTransaction fra = getSupportFragmentManager().beginTransaction();
+                        fra.replace(R.id.navHostFragment_user, new UserEditProfile());
+                        fra.addToBackStack(null);
+                        fra.commit();
+                        drawerLayout.closeDrawers();
+                        return  true;
+
+
                 }
                 return true;
             }

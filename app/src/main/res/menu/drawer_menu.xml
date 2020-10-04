@@ -16,8 +16,12 @@
         android:title="Github Page">
     </item>
     <item
+        android:id="@+id/addFeedback"
+        android:title="Add Feedback">
+    </item>
+    <item
         android:id="@+id/supportPhone"
-        android:title="Customer Support">
+        android:title="Call Customer Support">
     </item>
 
 
