@@ -93,6 +93,10 @@ public class FirebaseAuthentication {
     }
 
 
+    public void sendResetEmail(){
+        mAuth.sendPasswordResetEmail(mAuth.getCurrentUser().getEmail());
+    }
+
 
 
 

@@ -98,7 +98,6 @@ public class FirebaseRealtime {
                 if(userDataCallback!=null){
                     userDataCallback.callback(courierXUser);
                 }
-
             }
 
             @Override
@@ -116,6 +115,18 @@ public class FirebaseRealtime {
 
     public void setUserDataCallback(UserDataCallback userDataCallback) {
         this.userDataCallback= userDataCallback;
+    }
+
+
+
+    public  void updateUser(CourierXUser courierXUser){
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("address", courierXUser.getAddress());
+        updates.put("phone" , courierXUser.getPhoneNumber());
+        updates.put("firstName" , courierXUser.getFirstName());
+        updates.put("lastName" , courierXUser.getLastName());
+        userRef.child(currentUser.getUid()).updateChildren(updates);
+
     }
 
 }
