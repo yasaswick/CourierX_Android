@@ -19,6 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".EntryPoints.UserMain" />
+
+
+
+
     </application>
+
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
 </manifest>

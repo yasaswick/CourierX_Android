@@ -9,7 +9,7 @@
         android:title="Packages"
         android:icon="@drawable/ic_baseline_unarchive_24"/>
     <item
-        android:id="@+id/userProfile"
-        android:title="Profile"
+        android:id="@+id/userFeedback"
+        android:title="Feedback"
         android:icon="@drawable/ic_outline_account_circle_24"/>
 </menu>

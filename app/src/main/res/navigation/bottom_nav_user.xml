@@ -15,4 +15,9 @@
         android:name="com.courierx.courierx.UserPackages"
         android:label="fragment_user_packages"
         tools:layout="@layout/fragment_user_packages" />
+    <fragment
+        android:id="@+id/userFeedback"
+        android:name="com.courierx.courierx.userFeedback"
+        android:label="fragment_user_feedback"
+        tools:layout="@layout/fragment_user_feedback" />
 </navigation>
