@@ -60,11 +60,12 @@ public class Location extends Fragment {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
         locationStatus = view.findViewById(R.id.locationStatus);
-        packageId = view.findViewById(R.id.packageid);
+        packageId = view.findViewById(R.id.location_packageId);
         btn = view.findViewById(R.id.update_location_btn);
         data = this.getArguments();
         if(data != null){
             st = data.getString("packageID");
+            packageId.setText(st);
         }
         Log.d("test","your package is tracked "+ st);
 
@@ -72,12 +73,13 @@ public class Location extends Fragment {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("packages");
         Query query=mDatabase.orderByChild("packageId").equalTo(st);
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                // Log.d("data" , "value  : " + snapshot.getValue(PackageDetails.class).getStatus());
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     packageId.setText(ds.getValue(PackageDetails.class).getPackageId());
+                    locationStatus.setText(ds.getValue(PackageDetails.class).getStatus());
                 }
 
             }
@@ -88,7 +90,7 @@ public class Location extends Fragment {
             }
         });
 
-        ref = FirebaseDatabase.getInstance().getReference("packages").child("-MIdmXXtUQY5xqATlci5").child("trackInfo");
+        ref = FirebaseDatabase.getInstance().getReference("packages").child(st).child("trackInfo");
 
         deliveryLocationListRecycler = view.findViewById(R.id.last_loction_list_recyclerview);
         deliveryLocationListRecycler.setHasFixedSize(true);
