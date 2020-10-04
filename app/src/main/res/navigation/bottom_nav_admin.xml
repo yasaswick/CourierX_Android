@@ -20,4 +20,9 @@
         android:name="com.courierx.courierx.Admin.AdminSettings"
         android:label="fragment_admin_settings"
         tools:layout="@layout/fragment_admin_settings" />
+    <fragment
+        android:id="@+id/adminFeedback"
+        android:name="com.courierx.courierx.AdminFeedback"
+        android:label="fragment_admin_feedback"
+        tools:layout="@layout/fragment_admin_feedback" />
 </navigation>

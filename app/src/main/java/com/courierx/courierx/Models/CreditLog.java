@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreditLog {
-    private String date;
+    private Long date;
     private Long amount;
     private String type;
 }

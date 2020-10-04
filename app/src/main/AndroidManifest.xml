@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.courierx.courierx">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,22 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EntryPoints.AdminMain"></activity>
+        <activity android:name=".ViewCreditLog"></activity>
+        <activity android:name=".AddPayment" />
+        <activity android:name=".EntryPoints.AdminMain" />
         <activity android:name=".AuthScreens.Selector" />
-        <activity android:name=".EntryPoints.DeliveryMain"></activity>
+        <activity android:name=".EntryPoints.DeliveryMain" />
         <activity android:name=".AuthScreens.Wrapper">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".EntryPoints.UserMain" />
-
-
-
-
     </application>
-
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
 </manifest>

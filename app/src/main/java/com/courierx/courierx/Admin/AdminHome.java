@@ -1,5 +1,6 @@
 package com.courierx.courierx.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.courierx.courierx.AddPayment;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,7 +30,7 @@ public class AdminHome extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         ref = FirebaseDatabase.getInstance().getReference().child("user");
@@ -41,11 +43,31 @@ public class AdminHome extends Fragment {
 
         userListOptions = new FirebaseRecyclerOptions.Builder<CourierXUser>().setQuery(ref , CourierXUser.class).build();
         userListAdapter = new FirebaseRecyclerAdapter<CourierXUser, UserListViewHolder>(userListOptions) {
+
             @Override
             protected void onBindViewHolder(@NonNull UserListViewHolder holder, int position, @NonNull CourierXUser model) {
+
+                final String key = getRef(position).getKey();
+                final String userName = model.getFirstName() + " " + model.getLastName();
+                final Long balance = model.getBalance();
+
                 holder.uid.setText(model.getUid());
-               // holder.balance.setText(model.getBalance().toString() + " LKR");
+                holder.balance.setText(model.getBalance().toString() + " LKR");
                 holder.name.setText(model.getFirstName() + " " + model.getLastName() );
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), AddPayment.class);
+                        intent.putExtra("uid" , key);
+                        intent.putExtra("balance" , balance);
+                        intent.putExtra("userName" , userName);
+
+                        startActivity(intent);
+                    }
+                });
+
+
 
             }
             @NonNull
