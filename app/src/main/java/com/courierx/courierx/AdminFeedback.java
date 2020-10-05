@@ -54,8 +54,9 @@ public class AdminFeedback extends Fragment {
             protected void onBindViewHolder(@NonNull FeedbackListViewHolder holder, int position, @NonNull Feedback model) {
                 holder.name.setText(model.getUserName());
                 holder.details.setText(model.getContent());
-               holder.title.setText(model.getTitle());
+                holder.title.setText(model.getTitle());
                 holder.date.setText(model.getDate().toString());
+                Log.d("hhh" , " test values : " + model.getTitle());
 
             }
         };
