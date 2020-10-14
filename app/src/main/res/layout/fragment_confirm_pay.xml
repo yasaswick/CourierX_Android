@@ -107,7 +107,7 @@
         tools:text="                            " />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/sndrrcvr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
