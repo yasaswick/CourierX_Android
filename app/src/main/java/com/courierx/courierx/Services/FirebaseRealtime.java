@@ -131,7 +131,13 @@ public class FirebaseRealtime {
 
 
     public void addFeedback(Feedback feedback){
-        feedbackRef.push().setValue(feedback);
+        String key = feedbackRef.push().getKey();
+        feedback.setFeedbackId(key);
+        feedbackRef.child(key).setValue(feedback);
+    }
+
+    public void deleteFeedback(String position){
+        feedbackRef.child(position).removeValue();
     }
 
 

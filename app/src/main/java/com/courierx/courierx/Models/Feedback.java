@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Feedback {
+    String feedbackId;
     String userId;
     String userName;
     String title;
