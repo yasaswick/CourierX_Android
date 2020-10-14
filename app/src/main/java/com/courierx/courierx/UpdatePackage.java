@@ -15,9 +15,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
-import com.courierx.courierx.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,21 +30,19 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
 
-public class AddPackageDetails extends Fragment {
+public class UpdatePackage extends Fragment {
 
     EditText description, weight, sheduledDate;
+    String packid, sndr, rcvr, sdt;
     Button button2;
     CheckBox fragile, track;
     Calendar calendar = Calendar.getInstance();
     Long timestamp, current;
     Bundle data;
-    String receiver;
-
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String key = database.getReference("quiz").push().getKey();
-    DatabaseReference myRef = database.getReference("packages").child(key);
-    UserDetailsSingleton userDetailsSingleton = UserDetailsSingleton.getInstance();
+    String pkgid;
+    DatabaseReference ref;
+    Query query;
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 
     private void updateLabel(){
         String myFormat = "yyyy/MM/dd";
@@ -56,14 +54,14 @@ public class AddPackageDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_package_details, container, false);
+        View view =  inflater.inflate(R.layout.fragment_update_package, container, false);
         description = view.findViewById(R.id.description);
         weight = view.findViewById(R.id.weight);
         sheduledDate = view.findViewById(R.id.sheduleDate);
-        data = this.getArguments();
-        if(data != null){
-            receiver = data.getString("receiverID");
-        }
+        fragile = view.findViewById(R.id.fragile);
+        track = view.findViewById(R.id.track);
+        button2 = view.findViewById(R.id.button2);
+        current = System.currentTimeMillis();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -80,22 +78,69 @@ public class AddPackageDetails extends Fragment {
                 new DatePickerDialog(getContext(), date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        fragile = view.findViewById(R.id.fragile);
-        track = view.findViewById(R.id.track);
-        button2 = view.findViewById(R.id.button2);
-        current = System.currentTimeMillis();
+        data = this.getArguments();
+        ref = FirebaseDatabase.getInstance().getReference().child("packages");
+        if(data != null){
+            pkgid = data.getString("packageID");
+        }
+        query = ref.orderByChild("packageId").equalTo(pkgid);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Map<String, Object> value = (Map<String, Object>) snapshot.getValue();
+                packid = String.valueOf(value.get("packageId"));
+                rcvr = String.valueOf(value.get("receiver"));
+                sndr = String.valueOf(value.get("sender"));
+                String des = String.valueOf(value.get("description"));
+                String weght = String.valueOf(value.get("weight"));
+                sdt = String.valueOf(value.get("scheduledDate"));
+                calendar.setTimeInMillis(Long.parseLong(sdt));
+                String shedate = formatter.format(calendar.getTime());
+                String fragle = String.valueOf(value.get("fragile"));
+                String trck = String.valueOf(value.get("isTracked"));
+                description.setText(des);
+                weight.setText(weght);
+                sheduledDate.setText(shedate);
+                if (fragle.equals("true")){
+                    fragile.setChecked(true);
+                }
+                if (trck.equals("true")){
+                    track.setChecked(true);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference upRef = database.getReference().child("packages").child(pkgid);
                 PackageDetails pkg = new PackageDetails();
-                pkg.setPackageId(key);
-                pkg.setSender(userDetailsSingleton.getCourierXUser().getUid().toString());
+                pkg.setPackageId(packid);
+                pkg.setSender(sndr);
+                pkg.setReceiver(rcvr);
                 pkg.setDescription(description.getText().toString());
                 pkg.setWeight(Float.valueOf(weight.getText().toString()));
-                pkg.setScheduledDate(timestamp.toString());
+                if(timestamp != null){
+                    pkg.setScheduledDate(timestamp.toString());
+                }
+                else{
+                    pkg.setScheduledDate(sdt);
+                }
                 pkg.setAddedDate(current.toString());
-                pkg.setReceiver(receiver);
                 pkg.setStatus("Pending");
                 if(fragile.isChecked()){
                     pkg.setFragile("true");
@@ -107,7 +152,7 @@ public class AddPackageDetails extends Fragment {
                 }else {
                     pkg.setIsTracked("false");
                 }
-                myRef.setValue(pkg);
+                upRef.setValue(pkg);
                 listViewFragment();
             }
         });

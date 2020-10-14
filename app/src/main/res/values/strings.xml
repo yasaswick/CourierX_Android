@@ -43,5 +43,6 @@
     <string name="trak_package">Track Package?</string>
     <string name="sender_receiver">Sender/Receiver</string>
     <string name="receiver">Receiver</string>
+    <string name="status">Status</string>
 
 </resources>
