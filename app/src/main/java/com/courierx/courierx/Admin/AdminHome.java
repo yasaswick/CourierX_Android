@@ -67,8 +67,6 @@ public class AdminHome extends Fragment {
                     }
                 });
 
-
-
             }
             @NonNull
             @Override
