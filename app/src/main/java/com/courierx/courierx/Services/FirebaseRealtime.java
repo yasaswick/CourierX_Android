@@ -11,6 +11,8 @@ import com.courierx.courierx.Models.Feedback;
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.TrackInfo;
 import com.courierx.courierx.Models.UserDetailsSingleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,13 +53,6 @@ public class FirebaseRealtime {
 
     }
 
-    public void addCredit(Long amount, CreditLog creditLog){
-        userRef.child(currentUser.getUid()).child("creditLog").push().setValue(creditLog);
-        Map<String , Object> credit = new HashMap<>();
-        credit.put("balance" , amount);
-        userRef.child(currentUser.getUid()).updateChildren(credit);
-    }
-
 
     public void setPackageLocation(PackageDetails packageDetails , final TrackInfo trackInfo){
         //packageRef.child(packageDetails.getPackageId()).child("trackInfoList").setValue(trackInfo);
@@ -83,8 +78,18 @@ public class FirebaseRealtime {
 
     }
 
-    public void registerUser(CourierXUser user){
-        userRef.child(user.getUid()).setValue(user);
+    public void registerUser(final CourierXUser user){
+        userRef.child(user.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                CreditLog credit= new CreditLog();
+                credit.setDate(System.currentTimeMillis());
+                credit.setAmount((long)1000);
+                credit.setType("Joining Bonus");
+                Long initialBalance = Long.valueOf(1000);
+                addCredit(user.getUid(),credit,initialBalance);
+            }
+        });
     }
 
 
@@ -136,12 +141,10 @@ public class FirebaseRealtime {
         feedbackRef.child(key).setValue(feedback);
     }
 
-    public void deleteFeedback(String position){
-        feedbackRef.child(position).removeValue();
+    public void addCredit(String userId,CreditLog creditLog,Long balance){
+        userRef.child(userId).child("creditLog").push().setValue(creditLog);
+        userRef.child(userId).child("balance").setValue(balance);
     }
-
-
-
 
 
 }
