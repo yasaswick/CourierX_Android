@@ -18,12 +18,7 @@ public class CourierXUser {
     private String phoneNumber;
     private String address;
     private String role;
-    private List<PackageDetails> sentPackages;
-    private List<PackageDetails> recievedPackages;
-    private List<CreditLog> creditLog;
     private Long balance;
-
-
     public CourierXUser(){
 
     }

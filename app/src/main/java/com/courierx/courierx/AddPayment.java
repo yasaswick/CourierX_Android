@@ -3,6 +3,7 @@ package com.courierx.courierx;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 
 import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.Services.FirebaseRealtime;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddPayment extends AppCompatActivity {
 
@@ -25,7 +29,7 @@ public class AddPayment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
-creditLog = new CreditLog();
+        creditLog = new CreditLog();
         firebaseRealtime = new FirebaseRealtime();
         uid = findViewById(R.id.add_credit_userID);
         name = findViewById(R.id.add_credit_username);
@@ -33,9 +37,9 @@ creditLog = new CreditLog();
         amount = findViewById(R.id.add_credit_amount);
         addBtn = findViewById(R.id.add_credit_button);
 
-        Long userbalance = getIntent().getLongExtra("balance", 0);
+        final Long userbalance = getIntent().getLongExtra("balance", 0);
         String username = getIntent().getStringExtra("userName");
-        String userId = getIntent().getStringExtra("uid");
+        final String userId = getIntent().getStringExtra("uid");
 
         name.setText(username);
         balance.setText(userbalance.toString());
@@ -44,13 +48,12 @@ creditLog = new CreditLog();
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Long finalBalance = Long.parseLong(amount.getText().toString());
-
-
-                creditLog.setAmount(Long.parseLong(amount.getText().toString()));
+                Long newBalance = Long.parseLong(amount.getText().toString());
+                Long finalBalance = newBalance + userbalance;
+                creditLog.setAmount(newBalance);
                 creditLog.setDate(System.currentTimeMillis());
                 creditLog.setType("Test");
-                firebaseRealtime.addCredit(finalBalance ,creditLog);
+                firebaseRealtime.addCredit(userId ,creditLog, finalBalance);
             }
         });
 

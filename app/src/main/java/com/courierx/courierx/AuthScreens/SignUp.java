@@ -73,14 +73,6 @@ public class SignUp extends Fragment {
                 courierXUser.setLastName(lname.getText().toString());
                 courierXUser.setAddress(address.getText().toString());
                 courierXUser.setRole("user");
-                courierXUser.setBalance((long) 1000.00);
-                CreditLog credit= new CreditLog();
-                credit.setDate(System.currentTimeMillis());
-                credit.setAmount((long)1000);
-                credit.setType("Joining Bonus");
-                List<CreditLog> creditLog = new ArrayList<CreditLog>();
-                creditLog.add(credit);
-                courierXUser.setCreditLog(creditLog);
                 firebaseAuthentication.registerUser(courierXUser,pswd,getContext());
             }
         });
