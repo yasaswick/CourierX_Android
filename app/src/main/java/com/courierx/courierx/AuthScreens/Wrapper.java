@@ -42,12 +42,13 @@ public class Wrapper extends AppCompatActivity {
         firebaseRealtime = new FirebaseRealtime();
         splashView();
         if (currentUser != null){
-            firebaseRealtime.getUserDetails();
+
             DatabaseReference myRef = database.getReference("user").child(currentUser.getUid());
             myRef.addValueEventListener(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    firebaseRealtime.getUserDetails();
                     courierXUser = dataSnapshot.getValue(CourierXUser.class);
                     String userRole = courierXUser.getRole();
                     Log.d("TAG", "Value is: " + userRole);
