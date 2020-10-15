@@ -36,13 +36,12 @@ import java.util.Map;
 public class UpdatePackage extends Fragment {
 
     EditText description, weight, sheduledDate;
-    String packid, sndr, rcvr, sdt;
+    String packid, sndr, rcvr, sdt, pkgid, wght;
     Button button2;
     CheckBox fragile, track;
     Calendar calendar = Calendar.getInstance();
     Long timestamp, current;
     Bundle data;
-    String pkgid;
     DatabaseReference ref;
     Query query;
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
@@ -129,39 +128,58 @@ public class UpdatePackage extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference upRef = database.getReference().child("packages").child(pkgid);
-                PackageDetails pkg = new PackageDetails();
-                pkg.setPackageId(packid);
-                pkg.setSender(sndr);
-                pkg.setReceiver(rcvr);
-                pkg.setDescription(description.getText().toString());
-                pkg.setWeight(Float.valueOf(weight.getText().toString()));
-                if(timestamp != null){
-                    pkg.setScheduledDate(timestamp.toString());
+                if(description.getText().toString().trim().equalsIgnoreCase("")){
+                    description.requestFocus();
+                    description.setError("This field cannot be null!");
                 }
-                else{
-                    pkg.setScheduledDate(sdt);
+                else if (weight.getText().toString().trim().equalsIgnoreCase("")){
+                    weight.requestFocus();
+                    weight.setError("Please enter weight!");
                 }
-                pkg.setAddedDate(current.toString());
-                pkg.setStatus("Pending");
-                if(fragile.isChecked()){
-                    pkg.setFragile("true");
-                }else {
-                    pkg.setFragile("false");
+                else if (sheduledDate.getText().toString().trim().equalsIgnoreCase("")){
+                    sheduledDate.requestFocus();
+                    sheduledDate.setError("Please enter your prefered sheduled date!");
                 }
-                if (track.isChecked()){
-                    pkg.setIsTracked("true");
-                }else {
-                    pkg.setIsTracked("false");
+                else {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference upRef = database.getReference().child("packages").child(pkgid);
+                    PackageDetails pkg = new PackageDetails();
+                    pkg.setPackageId(packid);
+                    pkg.setSender(sndr);
+                    pkg.setReceiver(rcvr);
+                    pkg.setDescription(description.getText().toString());
+                    wght = weight.getText().toString();
+                    try {
+                        pkg.setWeight(Float.valueOf(weight.getText().toString()));
+                        if(timestamp != null){
+                            pkg.setScheduledDate(timestamp.toString());
+                        }
+                        else{
+                            pkg.setScheduledDate(sdt);
+                        }
+                        pkg.setAddedDate(current.toString());
+                        pkg.setStatus("Pending");
+                        if(fragile.isChecked()){
+                            pkg.setFragile("true");
+                        }else {
+                            pkg.setFragile("false");
+                        }
+                        if (track.isChecked()){
+                            pkg.setIsTracked("true");
+                        }else {
+                            pkg.setIsTracked("false");
+                        }
+                        upRef.setValue(pkg);
+                        Snackbar snackbar = Snackbar.make(view, "Package Updated!", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                        listViewFragment();
+                    }catch (NumberFormatException e){
+                        weight.requestFocus();
+                        weight.setError("Please enter a numeric weight!");
+                    }
                 }
-                upRef.setValue(pkg);
-                Snackbar snackbar = Snackbar.make(view, "Package Updated!", Snackbar.LENGTH_LONG);
-                snackbar.show();
-                listViewFragment();
             }
         });
-
         return view;
     }
 
