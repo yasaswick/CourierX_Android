@@ -104,6 +104,7 @@ public class AddPackageDetails extends Fragment {
                     sheduledDate.setError("Please enter your prefered sheduled date!");
                 }
                 else {
+                    sheduledDate.setError(null);
                     PackageDetails pkg = new PackageDetails();
                     pkg.setPackageId(key);
                     pkg.setSender(userDetailsSingleton.getCourierXUser().getUid().toString());

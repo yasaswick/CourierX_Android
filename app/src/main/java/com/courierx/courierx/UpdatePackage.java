@@ -141,6 +141,7 @@ public class UpdatePackage extends Fragment {
                     sheduledDate.setError("Please enter your prefered sheduled date!");
                 }
                 else {
+                    sheduledDate.setError(null);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference upRef = database.getReference().child("packages").child(pkgid);
                     PackageDetails pkg = new PackageDetails();
