@@ -2,16 +2,19 @@ package com.courierx.courierx;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.courierx.courierx.Admin.UserListViewHolder;
 import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.Services.FirebaseRealtime;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -49,6 +52,8 @@ public class AddPayment extends AppCompatActivity {
         amount = findViewById(R.id.add_credit_amount);
         addBtn = findViewById(R.id.add_credit_button);
         creditLogRecycler = findViewById(R.id.credit_log_recycler);
+        creditLogRecycler.hasFixedSize();
+        creditLogRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
         final Long userbalance = getIntent().getLongExtra("balance", 0);
@@ -73,7 +78,8 @@ public class AddPayment extends AppCompatActivity {
             @NonNull
             @Override
             public CreditLogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.credit_log_card_list , parent , false);
+                return new CreditLogViewHolder(recyclerview);
             }
         };
 
@@ -90,9 +96,8 @@ public class AddPayment extends AppCompatActivity {
         });
 
 
-
-
-
+        creditLogListAdapter.startListening();
+        creditLogRecycler.setAdapter(creditLogListAdapter);
 
     }
 }
