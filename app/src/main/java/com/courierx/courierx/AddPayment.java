@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.Services.FirebaseRealtime;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class AddPayment extends AppCompatActivity {
     FirebaseRealtime firebaseRealtime;
     Button addBtn;
     CreditLog creditLog;
+   // RecyclerView creditLogRecycler;
+   // FirebaseRecyclerOptions<> recyclerOptions;
 
 
     @Override
