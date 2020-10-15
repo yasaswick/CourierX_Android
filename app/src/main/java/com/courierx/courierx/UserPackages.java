@@ -1,9 +1,11 @@
 package com.courierx.courierx;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,12 +18,15 @@ import android.widget.Switch;
 
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.Packages.ToMeViewHolder;
+import com.courierx.courierx.Track.TrackedAndPickedDelivery;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.courierx.courierx.Models.PackageDetails;
 import com.google.firebase.database.Query;
+
+import java.lang.annotation.Target;
 
 public class UserPackages extends Fragment {
 
@@ -31,6 +36,8 @@ public class UserPackages extends Fragment {
     private RecyclerView toMeListRecycler;
     private UserDetailsSingleton userDetailsSingleton;
     private Query query;
+    Bundle data;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +61,15 @@ public class UserPackages extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull ToMeViewHolder holder, int position, @NonNull PackageDetails model) {
+                final String id = getRef(position).getKey();
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        data = new Bundle();
+                        data.putString("packageID", id);
+                        detailedViewFragment();
+                    }
+                });
                 holder.pakgeid.setText(model.getPackageId());
                 holder.pakgedis.setText(model.getDescription());
             }
@@ -62,7 +78,7 @@ public class UserPackages extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
              if(b){
-                 query = ref.orderByChild("reciever").equalTo(userDetailsSingleton.getCourierXUser().getUid());
+                 query = ref.orderByChild("receiver").equalTo(userDetailsSingleton.getCourierXUser().getUid());
                  toMeListOptions = new FirebaseRecyclerOptions.Builder<PackageDetails>().setQuery(query , PackageDetails.class).build();
                  toMeListAdapter.updateOptions(toMeListOptions);
              }else{
@@ -78,5 +94,13 @@ public class UserPackages extends Fragment {
         toMeListRecycler.setAdapter(toMeListAdapter);
 
         return view;
+    }
+
+    public void detailedViewFragment(){
+        TrackedAndPickedDelivery trackedAndPickedDelivery = new TrackedAndPickedDelivery();
+        trackedAndPickedDelivery.setArguments(data);
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.navHostFragment_user, trackedAndPickedDelivery);
+        ft.commit();
     }
 }

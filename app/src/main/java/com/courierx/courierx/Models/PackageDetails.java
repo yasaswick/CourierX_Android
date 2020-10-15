@@ -18,6 +18,7 @@ public class PackageDetails {
     private String pickedDate;
     private String packageId;
     private String pickDate;
+    private String addedDate;
     private String status;
     private String description;
     private Float weight;
