@@ -1,11 +1,13 @@
 package com.courierx.courierx;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,7 +32,7 @@ public class AddPayment extends AppCompatActivity {
     CreditLog creditLog;
     RecyclerView creditLogRecycler;
     FirebaseRecyclerOptions<CreditLog> recyclerOptions;
-    FirebaseRecyclerAdapter<CreditLog,CreditLogViewHolder> creditLogListViewHolder;
+    FirebaseRecyclerAdapter<CreditLog,CreditLogViewHolder> creditLogListAdapter;
     DatabaseReference databaseReference;
 
     @Override
@@ -59,7 +61,21 @@ public class AddPayment extends AppCompatActivity {
         balance.setText(userbalance.toString());
         uid.setText(userId);
 
-        recyclerOptions = new FirebaseRecyclerOptions.Builder<CreditLog>()
+        recyclerOptions = new FirebaseRecyclerOptions.Builder<CreditLog>().setQuery(databaseReference,CreditLog.class).build();
+        creditLogListAdapter = new FirebaseRecyclerAdapter<CreditLog, CreditLogViewHolder>(recyclerOptions) {
+            @Override
+            protected void onBindViewHolder(@NonNull CreditLogViewHolder holder, int position, @NonNull CreditLog model) {
+                holder.amount.setText(model.getAmount().toString());
+                holder.type.setText(model.getType());
+                holder.date.setText(model.getDate().toString());
+            }
+
+            @NonNull
+            @Override
+            public CreditLogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+            }
+        };
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
