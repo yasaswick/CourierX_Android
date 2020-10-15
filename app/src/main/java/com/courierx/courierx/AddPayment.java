@@ -22,8 +22,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AddPayment extends AppCompatActivity {
 
@@ -72,7 +75,12 @@ public class AddPayment extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull CreditLogViewHolder holder, int position, @NonNull CreditLog model) {
                 holder.amount.setText(model.getAmount().toString());
                 holder.type.setText(model.getType());
-                holder.date.setText(model.getDate().toString());
+
+                Date date = new Date(model.getDate());
+                SimpleDateFormat sfd = new SimpleDateFormat("dd-MMM-yyyy HH:mm",
+                        Locale.getDefault());
+                String text = sfd.format(date);
+                holder.date.setText(text);
             }
 
             @NonNull
@@ -92,6 +100,8 @@ public class AddPayment extends AppCompatActivity {
                 creditLog.setDate(System.currentTimeMillis());
                 creditLog.setType("Test");
                 firebaseRealtime.addCredit(userId ,creditLog, finalBalance);
+                amount.setText("");
+                creditLogListAdapter.notifyDataSetChanged();
             }
         });
 
