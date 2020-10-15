@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +16,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,8 +42,7 @@ public class AddPackageDetails extends Fragment {
     Calendar calendar = Calendar.getInstance();
     Long timestamp, current;
     Bundle data;
-    String receiver;
-
+    String receiver, wght;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     String key = database.getReference("quiz").push().getKey();
@@ -88,27 +91,50 @@ public class AddPackageDetails extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PackageDetails pkg = new PackageDetails();
-                pkg.setPackageId(key);
-                pkg.setSender(userDetailsSingleton.getCourierXUser().getUid().toString());
-                pkg.setDescription(description.getText().toString());
-                pkg.setWeight(Float.valueOf(weight.getText().toString()));
-                pkg.setScheduledDate(timestamp.toString());
-                pkg.setAddedDate(current.toString());
-                pkg.setReceiver(receiver);
-                pkg.setStatus("Pending");
-                if(fragile.isChecked()){
-                    pkg.setFragile("true");
-                }else {
-                    pkg.setFragile("false");
+                if(description.getText().toString().trim().equalsIgnoreCase("")){
+                    description.requestFocus();
+                    description.setError("This field cannot be null!");
                 }
-                if (track.isChecked()){
-                    pkg.setIsTracked("true");
-                }else {
-                    pkg.setIsTracked("false");
+                else if (weight.getText().toString().trim().equalsIgnoreCase("")){
+                    weight.requestFocus();
+                    weight.setError("Please enter weight!");
                 }
-                myRef.setValue(pkg);
-                listViewFragment();
+                else if (sheduledDate.getText().toString().trim().equalsIgnoreCase("")){
+                    sheduledDate.requestFocus();
+                    sheduledDate.setError("Please enter your prefered sheduled date!");
+                }
+                else {
+                    PackageDetails pkg = new PackageDetails();
+                    pkg.setPackageId(key);
+                    pkg.setSender(userDetailsSingleton.getCourierXUser().getUid().toString());
+                    pkg.setDescription(description.getText().toString());
+                    wght = weight.getText().toString();
+                    try {
+                        Float.parseFloat(wght);
+                        pkg.setWeight(Float.valueOf(weight.getText().toString()));
+                        pkg.setScheduledDate(timestamp.toString());
+                        pkg.setAddedDate(current.toString());
+                        pkg.setReceiver(receiver);
+                        pkg.setStatus("Pending");
+                        if(fragile.isChecked()){
+                            pkg.setFragile("true");
+                        }else {
+                            pkg.setFragile("false");
+                        }
+                        if (track.isChecked()){
+                            pkg.setIsTracked("true");
+                        }else {
+                            pkg.setIsTracked("false");
+                        }
+                        myRef.setValue(pkg);
+                        Snackbar snackbar = Snackbar.make(view, "Package Added!", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                        listViewFragment();
+                    }catch (NumberFormatException e){
+                        weight.requestFocus();
+                        weight.setError("Please enter a numeric weight!");
+                    }
+                }
             }
         });
 

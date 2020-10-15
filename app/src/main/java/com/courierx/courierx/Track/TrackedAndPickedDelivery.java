@@ -1,5 +1,6 @@
 package com.courierx.courierx.Track;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,12 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.courierx.courierx.AddPackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
 import com.courierx.courierx.UpdatePackage;
 import com.courierx.courierx.UserPackages;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -90,10 +93,10 @@ public class TrackedAndPickedDelivery extends Fragment {
                     sndrcvrtxt.setText("Sender");
                     sender.setText(sndr);
                 }
-                if (!status.equals("Picked")){
+                if ((status.equals("Pending") && sndr.equals(person)) || (status.equals("Delivered") && sndr.equals(person))){
                     delt.setVisibility(View.VISIBLE);
                 }
-                if (status.equals("Pending")){
+                if (status.equals("Pending") && sndr.equals(person)){
                     edit.setVisibility(View.VISIBLE);
                 }
                 discrption.setText(des);
@@ -125,7 +128,6 @@ public class TrackedAndPickedDelivery extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot itemSnapshot : snapshot.getChildren()){
                             itemSnapshot.getRef().removeValue();
-                            listViewFragment();
                         }
                     }
 
@@ -134,6 +136,9 @@ public class TrackedAndPickedDelivery extends Fragment {
 
                     }
                 });
+                Snackbar snackbar = Snackbar.make(view, "Package Deleted!", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                listViewFragment();
             }
         });
 
