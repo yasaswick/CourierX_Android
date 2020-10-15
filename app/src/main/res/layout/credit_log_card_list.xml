@@ -17,13 +17,6 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/user_card_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Credit Log"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-            <TextView
                 android:id="@+id/credit_log_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +43,7 @@
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 />
+
         </LinearLayout>
     </LinearLayout>
 
