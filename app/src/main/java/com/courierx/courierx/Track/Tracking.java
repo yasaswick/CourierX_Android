@@ -22,15 +22,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-
 public class Tracking extends Fragment {
 
     private EditText getSetPackageId;
     private Button setTrackingBtn;
     private Bundle data;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,7 +48,6 @@ public class Tracking extends Fragment {
 
         return view;
     }
-
     public void findPackageFrag(){
 
         FindPackage findPackage = new FindPackage();

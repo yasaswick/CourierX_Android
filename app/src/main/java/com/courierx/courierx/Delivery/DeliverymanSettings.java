@@ -23,7 +23,7 @@ public class DeliverymanSettings extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_deliveryman_settings, container, false);
         Button logoutBtn = view.findViewById(R.id.deliveryman_logout_button);
-//
+
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
