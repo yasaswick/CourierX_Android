@@ -1,22 +1,15 @@
 package com.courierx.courierx.Track;
 
-import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.courierx.courierx.AddPackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
 import com.courierx.courierx.UpdatePackage;
@@ -31,7 +24,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
 
 public class TrackedAndPickedDelivery extends Fragment {
