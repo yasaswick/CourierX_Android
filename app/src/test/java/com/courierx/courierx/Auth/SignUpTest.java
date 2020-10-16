@@ -39,8 +39,4 @@ public class SignUpTest {
         Assert.assertFalse(result);
     }
 
-
-
-
-
 }

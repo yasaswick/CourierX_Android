@@ -32,9 +32,8 @@ public class ConfirmPay extends AppCompatActivity {
         setContentView(R.layout.confirm_payment);
 
         firebaseRealtime = new FirebaseRealtime();
-
         userDetailsSingleton = UserDetailsSingleton.getInstance();
-       confirmButton = findViewById(R.id.confirmPaymentButton);
+        confirmButton = findViewById(R.id.confirmPaymentButton);
         previous = findViewById(R.id.user_credit_balance);
         payment = findViewById(R.id.user_payment_amount);
         balance = findViewById(R.id.user_new_credit_balance);
@@ -45,7 +44,6 @@ public class ConfirmPay extends AppCompatActivity {
         previous.setText(userCredit.toString());
         payment.setText(charge.toString());
         balance.setText(finalCredit.toString());
-
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

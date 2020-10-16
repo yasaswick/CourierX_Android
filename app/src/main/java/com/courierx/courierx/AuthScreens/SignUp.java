@@ -16,6 +16,7 @@ import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.CreditLog;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseAuthentication;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -64,14 +65,46 @@ public class SignUp extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pswd = password.getText().toString();
-                courierXUser.setEmail(email.getText().toString());
-                courierXUser.setPhoneNumber(phone.getText().toString());
-                courierXUser.setFirstName(fname.getText().toString());
-                courierXUser.setLastName(lname.getText().toString());
-                courierXUser.setAddress(address.getText().toString());
-                courierXUser.setRole("user");
-                firebaseAuthentication.registerUser(courierXUser,pswd,getContext());
+
+                String pswd = password.getText().toString().trim();
+                String repeat = passwordRepeat.getText().toString().trim();
+                String useremail = email.getText().toString().trim();
+                String firstname = fname.getText().toString().trim();
+                String lastname = lname.getText().toString().trim();
+                String mobile = phone.getText().toString().trim();
+                String useraddress = address.getText().toString().trim();
+
+                if(validatePassword(pswd,repeat)){
+                    if(passwordMatch(pswd,repeat)){
+                        if(validateEmail(useremail)){
+
+                            if(fieldValidate(firstname)&& fieldValidate(lastname)&& fieldValidate(mobile)&& fieldValidate(useraddress)){
+
+
+                                courierXUser.setEmail(email.getText().toString());
+                                courierXUser.setPhoneNumber(phone.getText().toString());
+                                courierXUser.setFirstName(fname.getText().toString());
+                                courierXUser.setLastName(lname.getText().toString());
+                                courierXUser.setAddress(address.getText().toString());
+                                courierXUser.setRole("user");
+                                firebaseAuthentication.registerUser(courierXUser,pswd,getContext());
+
+
+
+                            }else{
+                                Snackbar.make(view,"Please fill all fields!",Snackbar.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Snackbar.make(view,"Please enter valid email!",Snackbar.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Snackbar.make(view,"Passwords Doesn't match!",Snackbar.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Snackbar.make(view,"Password should be more than 8 characters!",Snackbar.LENGTH_SHORT).show();
+                }
+
             }
         });
         return v;
@@ -94,12 +127,24 @@ public class SignUp extends Fragment {
 
     public boolean validatePassword(String password, String repeat){
         if(password.length()>8 && repeat.length()>8){
-            if(password.equals(repeat)){
-                return true;
-            }else {
-                return false;
-            }
+            return true;
         }else {
+            return false;
+        }
+    }
+
+    public boolean passwordMatch(String password, String repeat){
+        if(password.equals(repeat)){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean fieldValidate(String message){
+        if (!message.isEmpty()){
+           return true;
+        } else {
             return false;
         }
     }
