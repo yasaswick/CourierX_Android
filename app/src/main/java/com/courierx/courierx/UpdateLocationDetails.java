@@ -118,4 +118,17 @@ public class UpdateLocationDetails extends Fragment {
         ft.commit();
     }
 
+    public boolean UpdateLocationValidate(String location){
+        if (location.isEmpty()){
+
+                return false;
+
+        } else {
+
+            return true;
+        }
+    }
+
 }
+
+
