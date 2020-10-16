@@ -34,35 +34,32 @@ public class ConfirmPay extends AppCompatActivity {
         firebaseRealtime = new FirebaseRealtime();
 
         userDetailsSingleton = UserDetailsSingleton.getInstance();
-       // confirmButton = findViewById(R.id.setDeliveryDoneBtn);
+       confirmButton = findViewById(R.id.confirmPaymentButton);
         previous = findViewById(R.id.user_credit_balance);
         payment = findViewById(R.id.user_payment_amount);
         balance = findViewById(R.id.user_new_credit_balance);
 
         Long userCredit = userDetailsSingleton.getCourierXUser().getBalance();
-        Long charge = Long.valueOf(200);
-        Long finalCredit = userCredit - charge;
+        final Long charge = Long.valueOf(200);
+        final Long finalCredit = userCredit - charge;
         previous.setText(userCredit.toString());
         payment.setText(charge.toString());
         balance.setText(finalCredit.toString());
-//        CreditLog creditLog = new CreditLog();
-//        creditLog.setAmount(charge);
-//        creditLog.setType("Delivery Charge");
-//        firebaseRealtime.addCredit(userDetailsSingleton.getCourierXUser().getUid(), creditLog, finalCredit);
 
-//        confirmButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                listViewFragment();
-//            }
-//        });
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreditLog creditLog = new CreditLog();
+                creditLog.setAmount(charge);
+                creditLog.setType("Delivery Charge");
+                firebaseRealtime.addCredit(userDetailsSingleton.getCourierXUser().getUid(), creditLog, finalCredit);
+                close();
+            }
+        });
     }
 
-    public void listViewFragment() {
-        UserPackages userPackages = new UserPackages();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.navHostFragment_user, userPackages);
-        fragmentTransaction.commit();
+    public void close() {
         this.finish();
     }
 
