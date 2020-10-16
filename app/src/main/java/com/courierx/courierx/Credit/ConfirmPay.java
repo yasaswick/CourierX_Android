@@ -2,6 +2,7 @@ package com.courierx.courierx.Credit;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,7 +18,7 @@ import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseRealtime;
 import com.courierx.courierx.UserPackages;
 
-public class ConfirmPay extends Fragment {
+public class ConfirmPay extends AppCompatActivity {
 
     TextView previous,payment,balance;
     Button confirmButton;
@@ -25,17 +26,18 @@ public class ConfirmPay extends Fragment {
     FirebaseRealtime firebaseRealtime;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_confirm_pay, container, false);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.confirm_payment);
+
         firebaseRealtime = new FirebaseRealtime();
 
         userDetailsSingleton = UserDetailsSingleton.getInstance();
-        confirmButton = view.findViewById(R.id.setDeliveryDoneBtn);
-        previous = view.findViewById(R.id.user_credit_balance);
-        payment = view.findViewById(R.id.user_payment_amount);
-        balance= view.findViewById(R.id.user_credit_balance);
+       // confirmButton = findViewById(R.id.setDeliveryDoneBtn);
+        previous = findViewById(R.id.user_credit_balance);
+        payment = findViewById(R.id.user_payment_amount);
+        balance = findViewById(R.id.user_new_credit_balance);
 
         Long userCredit = userDetailsSingleton.getCourierXUser().getBalance();
         Long charge = Long.valueOf(200);
@@ -43,30 +45,25 @@ public class ConfirmPay extends Fragment {
         previous.setText(userCredit.toString());
         payment.setText(charge.toString());
         balance.setText(finalCredit.toString());
-        CreditLog creditLog = new CreditLog();
-        creditLog.setAmount(charge);
-        creditLog.setType("Delivery Charge");
-        firebaseRealtime.addCredit(userDetailsSingleton.getCourierXUser().getUid(), creditLog , finalCredit);
+//        CreditLog creditLog = new CreditLog();
+//        creditLog.setAmount(charge);
+//        creditLog.setType("Delivery Charge");
+//        firebaseRealtime.addCredit(userDetailsSingleton.getCourierXUser().getUid(), creditLog, finalCredit);
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listViewFragment();
-            }
-        });
-
-
-
-        return  view;
-
+//        confirmButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                listViewFragment();
+//            }
+//        });
     }
-
 
     public void listViewFragment() {
         UserPackages userPackages = new UserPackages();
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.navHostFragment_user, userPackages);
         fragmentTransaction.commit();
+        this.finish();
     }
 
 

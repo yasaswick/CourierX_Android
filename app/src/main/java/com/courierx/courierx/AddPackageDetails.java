@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -139,9 +140,7 @@ public class AddPackageDetails extends Fragment {
     }
 
     public void confirmPayFragment() {
-        ConfirmPay confirmPay = new ConfirmPay();
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.navHostFragment_user,confirmPay );
-        fragmentTransaction.commit();
+        Intent intent = new Intent(getContext(), ConfirmPay.class);
+        startActivity(intent);
     }
 }
