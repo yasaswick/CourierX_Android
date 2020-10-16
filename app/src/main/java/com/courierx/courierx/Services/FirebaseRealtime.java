@@ -143,7 +143,9 @@ public class FirebaseRealtime {
     }
 
     public void addCredit(String userId,CreditLog creditLog,Long balance){
-        userRef.child(userId).child("creditLog").push().setValue(creditLog);
+        String key = userRef.child("creditLog").push().getKey();
+        creditLog.setCreditLogId(key);
+        userRef.child(userId).child("creditLog").child(key).setValue(creditLog);
         userRef.child(userId).child("balance").setValue(balance);
     }
 

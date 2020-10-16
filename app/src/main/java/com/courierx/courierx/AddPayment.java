@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.courierx.courierx.Admin.UserListViewHolder;
@@ -33,6 +34,7 @@ public class AddPayment extends AppCompatActivity {
 
     TextView uid,name,balance;
     EditText amount;
+    EditText type;
     FirebaseRealtime firebaseRealtime;
     Button addBtn;
     CreditLog creditLog;
@@ -51,7 +53,8 @@ public class AddPayment extends AppCompatActivity {
         uid = findViewById(R.id.add_credit_userID);
         name = findViewById(R.id.add_credit_username);
         balance = findViewById(R.id.add_credit_balance);
-        amount = findViewById(R.id.add_credit_amount);
+        amount = findViewById(R.id.add_credit_amount2);
+        type = findViewById(R.id.add_credit_type);
         addBtn = findViewById(R.id.add_credit_button);
         creditLogRecycler = findViewById(R.id.credit_log_recycler);
         creditLogRecycler.hasFixedSize();
@@ -70,7 +73,7 @@ public class AddPayment extends AppCompatActivity {
         recyclerOptions = new FirebaseRecyclerOptions.Builder<CreditLog>().setQuery(databaseReference,CreditLog.class).build();
         creditLogListAdapter = new FirebaseRecyclerAdapter<CreditLog, CreditLogViewHolder>(recyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull CreditLogViewHolder holder, int position, @NonNull CreditLog model) {
+            protected void onBindViewHolder(@NonNull CreditLogViewHolder holder, final int position, @NonNull CreditLog model) {
                 holder.amount.setText(model.getAmount().toString());
                 holder.type.setText(model.getType());
                 Date date = new Date(model.getDate());
@@ -78,6 +81,16 @@ public class AddPayment extends AppCompatActivity {
                         Locale.getDefault());
                 String text = sfd.format(date);
                 holder.date.setText(text);
+
+                holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CreditLog creditLog = creditLogListAdapter.getItem(position);
+                        databaseReference.child(creditLog.getCreditLogId()).removeValue();
+                    }
+                });
+
+
             }
 
             @NonNull
