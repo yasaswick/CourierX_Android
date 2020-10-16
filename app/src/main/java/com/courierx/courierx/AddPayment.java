@@ -49,15 +49,18 @@ public class AddPayment extends AppCompatActivity {
         setContentView(R.layout.activity_add_payment);
         creditLog = new CreditLog();
 
+
         firebaseRealtime = new FirebaseRealtime();
         uid = findViewById(R.id.add_credit_userID);
         name = findViewById(R.id.add_credit_username);
         balance = findViewById(R.id.add_credit_balance);
-        type = findViewById(R.id.add_credit_type);
+        amount = findViewById(R.id.add_credit_amount_creditlog);
+        type = findViewById(R.id.credit_type_creditlog);
         addBtn = findViewById(R.id.add_credit_button);
         creditLogRecycler = findViewById(R.id.credit_log_recycler);
         creditLogRecycler.hasFixedSize();
         creditLogRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
         final Long userbalance = getIntent().getLongExtra("balance", 0);
         String username = getIntent().getStringExtra("userName");
@@ -75,6 +78,7 @@ public class AddPayment extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull CreditLogViewHolder holder, final int position, @NonNull CreditLog model) {
                 holder.amount.setText(model.getAmount().toString());
                 holder.type.setText(model.getType());
+
                 Date date = new Date(model.getDate());
                 SimpleDateFormat sfd = new SimpleDateFormat("dd-MMM-yyyy HH:mm",
                         Locale.getDefault());
@@ -106,10 +110,11 @@ public class AddPayment extends AppCompatActivity {
                 Long newBalance = Long.parseLong(amount.getText().toString());
                 Long finalBalance = newBalance + userbalance;
                 creditLog.setAmount(newBalance);
+                creditLog.setType(type.getText().toString());
                 creditLog.setDate(System.currentTimeMillis());
-                creditLog.setType("Test");
                 firebaseRealtime.addCredit(userId ,creditLog, finalBalance);
                 amount.setText("");
+                type.setText("");
                 creditLogListAdapter.notifyDataSetChanged();
             }
         });

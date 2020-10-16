@@ -24,8 +24,6 @@ import java.util.List;
 
 public class SignUp extends Fragment {
 
-
-
     TextView logInRedirect;
     Button signUpBtn;
     FirebaseAuthentication firebaseAuthentication;
@@ -87,6 +85,24 @@ public class SignUp extends Fragment {
         ft.commit();
     }
 
+
+    public boolean validateEmail(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
+
+
+    public boolean validatePassword(String password, String repeat){
+        if(password.length()>8 && repeat.length()>8){
+            if(password.equals(repeat)){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
 
 
 }

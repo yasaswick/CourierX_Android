@@ -17,27 +17,25 @@ public class FeedbackTest {
     @Test
     public void testMessageValidationTrue(){
         boolean result = addFeedback.feedbackMessageValidate("This is a test message!");
-        Assert.assertEquals(true,result);
+        Assert.assertTrue(result);
     }
 
     @Test
     public void testMessageValidationFalse(){
         boolean result = addFeedback.feedbackMessageValidate("Message");
-        Assert.assertEquals(false,result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void testTopicValidationFalse(){
         boolean result = addFeedback.feedbackTopicValidate("This is a sample long topic!");
-        Assert.assertEquals(false,result);
+        Assert.assertFalse(result);
     }
 
     @Test
     public void testTopicValidationTrue(){
         boolean result = addFeedback.feedbackTopicValidate("Topic");
-        Assert.assertEquals(true,result);
+        Assert.assertTrue(result);
     }
-
-
 
 }
