@@ -1,31 +1,20 @@
 package com.courierx.courierx;
 
-import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 public class SearchRecepient extends Fragment {
 
@@ -34,7 +23,7 @@ public class SearchRecepient extends Fragment {
     Bundle data;
     DatabaseReference ref;
     Query query;
-    String receiverID, uid;
+    String receiverID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,54 +51,19 @@ public class SearchRecepient extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(!snapshot.exists()){
                                 recepient.requestFocus();
-                             Snackbar.make(view,"No such user", Snackbar.LENGTH_LONG).show();
-
+                                recepient.setError("No Such User Exists!");
                             } else {
                                 data = new Bundle();
-                               data.putString("receiverID", receiverID);
-                               detailedViewFragment();
+                                data.putString("receiverID", receiverID);
+                                detailedViewFragment();
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     }
                     );
-
-
-//                    query.addChildEventListener(new ChildEventListener() {
-//                        @Override
-//                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                            Map<String, Object> value = (Map<String, Object>) snapshot.getValue();
-//                            uid = String.valueOf(value.get("uid"));
-//                            if (snapshot != null){
-//                                data = new Bundle();
-//                                data.putString("receiverID", receiverID);
-//                                detailedViewFragment();
-//                            }
-//                            else{
-//                                recepient.requestFocus();
-//                                recepient.setError("No Such User ID");
-//                                Snackbar.make(view,"No such user", Snackbar.LENGTH_LONG).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                        }
-//                        @Override
-//                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//                        }
-//                        @Override
-//                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                        }
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//                        }
-                 //  }
-             //   );
                 }
             }
         });

@@ -1,14 +1,9 @@
 package com.courierx.courierx;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +11,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
-import com.courierx.courierx.R;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Map;
 
 public class AddPackageDetails extends Fragment {
 
@@ -104,6 +91,7 @@ public class AddPackageDetails extends Fragment {
                     sheduledDate.setError("Please enter your prefered sheduled date!");
                 }
                 else {
+                    sheduledDate.setError(null);
                     PackageDetails pkg = new PackageDetails();
                     pkg.setPackageId(key);
                     pkg.setSender(userDetailsSingleton.getCourierXUser().getUid().toString());
