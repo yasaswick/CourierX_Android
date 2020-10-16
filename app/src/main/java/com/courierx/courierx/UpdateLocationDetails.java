@@ -32,7 +32,6 @@ public class UpdateLocationDetails extends Fragment {
     EditText location;
     Button button;
     Bundle data;
-    String x;
     String packageid;
     Switch sButton;
     Switch sButton2;
@@ -60,6 +59,7 @@ public class UpdateLocationDetails extends Fragment {
         Query query=mDatabase.orderByChild("packageId").equalTo(packageid);
 
         query.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {

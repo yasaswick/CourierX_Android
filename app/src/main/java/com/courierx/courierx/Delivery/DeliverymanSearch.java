@@ -46,37 +46,32 @@ public class DeliverymanSearch extends Fragment {
                    getSetPackageId.requestFocus();
                    getSetPackageId.setError("Please enter the package Id you want to find!");
                }
-               else {
-                   String packageID = getSetPackageId.getText().toString();
-                   data = new Bundle();
-                   data.putString("packageID", packageID);
-                   detailedViewFragment();
-               }
 
-//               final String packageID = getSetPackageId.getText().toString();
-//               ref = FirebaseDatabase.getInstance().getReference().child("packageID");
-//               query = ref.orderByChild("packageId").equalTo(packageID);
 
-//               query.addValueEventListener(new ValueEventListener() {
-//
-//                   @Override
-//                   public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                       if(!snapshot.exists()){
-////                           packageID.requestFocus();
-////                           Snackbar.make(view,"No such package!", Snackbar.LENGTH_LONG).show();
-//
-//                       } else {
-//                           data = new Bundle();
-//                           data.putString("packageID", packageID);
-//                           detailedViewFragment();
-//                       }
-//                   }
-//
-//                   @Override
-//                   public void onCancelled(@NonNull DatabaseError error) {
-//
-//                   }
-//               });
+               final String packageID = getSetPackageId.getText().toString();
+               ref = FirebaseDatabase.getInstance().getReference().child("packages");
+               query = ref.orderByChild("packageId").equalTo(packageID);
+
+               query.addValueEventListener(new ValueEventListener() {
+
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       if(!snapshot.exists()){
+                          getSetPackageId.requestFocus();
+                           Snackbar.make(view,"No such package!", Snackbar.LENGTH_LONG).show();
+
+                       } else {
+                           data = new Bundle();
+                           data.putString("packageID", packageID);
+                           detailedViewFragment();
+                       }
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
 
            }
        });
