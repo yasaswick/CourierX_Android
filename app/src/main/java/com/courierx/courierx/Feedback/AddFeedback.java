@@ -1,4 +1,4 @@
-package com.courierx.courierx;
+package com.courierx.courierx.Feedback;
 
 import android.os.Bundle;
 
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.Models.Feedback;
 import com.courierx.courierx.Models.UserDetailsSingleton;
+import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseRealtime;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;

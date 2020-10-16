@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
+import com.courierx.courierx.Credit.ConfirmPay;
 import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.google.android.material.snackbar.Snackbar;
@@ -117,7 +120,7 @@ public class AddPackageDetails extends Fragment {
                         myRef.setValue(pkg);
                         Snackbar snackbar = Snackbar.make(view, "Package Added!", Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        listViewFragment();
+                        confirmPayFragment();
                     }catch (NumberFormatException e){
                         weight.requestFocus();
                         weight.setError("Please enter a numeric weight!");
@@ -134,5 +137,10 @@ public class AddPackageDetails extends Fragment {
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.navHostFragment_user, userPackages);
         fragmentTransaction.commit();
+    }
+
+    public void confirmPayFragment() {
+        Intent intent = new Intent(getContext(), ConfirmPay.class);
+        startActivity(intent);
     }
 }
