@@ -13,7 +13,7 @@ public class TrackInfo {
     Long date;
     String location;
     String pickedStatus;
-
+    String trackInfoId;
 
 }
 

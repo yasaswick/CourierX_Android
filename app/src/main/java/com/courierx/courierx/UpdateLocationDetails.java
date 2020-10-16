@@ -94,19 +94,14 @@ public class UpdateLocationDetails extends Fragment {
                         packageDetails.setStatus("Picked");
                 }
 
-
                 if(location.getText().toString().trim().equalsIgnoreCase("")){
                     location.requestFocus();
                     location.setError("Please enter the location of package!");
                 }
                 else {
-
                     trackInfo.setLocation(location.getText().toString());
-
-
                     trackInfo.setDate(System.currentTimeMillis());
                     firebaseRealtime.setPackageLocation(packageDetails, trackInfo);
-
                     detailedViewFragment();
                 }
             }
@@ -122,6 +117,5 @@ public class UpdateLocationDetails extends Fragment {
         ft.replace(R.id.bottom_nav_fragment_delivery, location);
         ft.commit();
     }
-
 
 }

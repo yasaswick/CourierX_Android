@@ -53,7 +53,6 @@ public class AddPayment extends AppCompatActivity {
         uid = findViewById(R.id.add_credit_userID);
         name = findViewById(R.id.add_credit_username);
         balance = findViewById(R.id.add_credit_balance);
-        amount = findViewById(R.id.add_credit_amount2);
         type = findViewById(R.id.add_credit_type);
         addBtn = findViewById(R.id.add_credit_button);
         creditLogRecycler = findViewById(R.id.credit_log_recycler);

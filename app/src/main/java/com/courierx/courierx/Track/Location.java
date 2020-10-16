@@ -111,7 +111,7 @@ public class Location extends Fragment {
                 return new DeliveryLocationListViewHolder(recyclerview);
             }
             @Override
-            protected void onBindViewHolder(@NonNull DeliveryLocationListViewHolder holder, int position, @NonNull TrackInfo model) {
+            protected void onBindViewHolder(@NonNull DeliveryLocationListViewHolder holder, final int position, @NonNull TrackInfo model) {
 
                 holder.location.setText(model.getLocation());
                 Date date = new Date(model.getDate());
@@ -119,6 +119,18 @@ public class Location extends Fragment {
                         Locale.getDefault());
                 String text = sfd.format(date);
                 holder.time.setText(text);
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        TrackInfo trackInfo = deliveryLocationListAdapter.getItem(position);
+                        ref.child(trackInfo.getTrackInfoId()).removeValue();
+
+
+                    }
+                });
+
+
+
             }
         };
         btn.setOnClickListener(new View.OnClickListener() {
