@@ -24,24 +24,11 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125"
+        app:layout_constraintVertical_bias="0.082"
         tools:text="Payment" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="114dp"
-        android:layout_height="101dp"
-        android:contentDescription="@drawable/payment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226"
-        app:srcCompat="@drawable/payment" />
 
     <TextView
         android:id="@+id/textView11"
@@ -130,16 +117,12 @@
         app:layout_constraintVertical_bias="0.797"
         tools:text="CONFIRM" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="97dp"
-        android:layout_height="49dp"
-        android:backgroundTint="#5D71E3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903"
-        tools:text="CANCEL" />
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pay"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="120dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
