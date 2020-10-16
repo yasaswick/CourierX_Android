@@ -79,6 +79,7 @@ public class FirebaseRealtime {
     }
 
     public void registerUser(final CourierXUser user){
+        user.setBalance((long)1000);
         userRef.child(user.getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
