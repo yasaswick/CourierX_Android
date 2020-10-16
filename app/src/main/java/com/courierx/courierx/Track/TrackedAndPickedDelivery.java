@@ -85,7 +85,7 @@ public class TrackedAndPickedDelivery extends Fragment {
                     sndrcvrtxt.setText("Sender");
                     sender.setText(sndr);
                 }
-                if ((status.equals("Pending") && sndr.equals(person)) || status.equals("Delivered")){
+                if (status.equals("Delivered")){
                     delt.setVisibility(View.VISIBLE);
                 }
                 if (status.equals("Pending") && sndr.equals(person)){
