@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F1F1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FDFCFC">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="378dp"
+            android:layout_height="96dp"
+            android:background="#ECE5E5"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="58dp"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/package_location_card"
+                android:layout_width="104dp"
+                android:layout_height="23dp"
+                android:text="Location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/package_time_card"
+                android:layout_width="171dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="27dp"
+                android:text="Time"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/package_location_card"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.654" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
