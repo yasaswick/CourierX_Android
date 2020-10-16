@@ -1,5 +1,6 @@
 package com.courierx.courierx.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.courierx.courierx.AddPayment;
+import com.courierx.courierx.Models.CourierXUser;
 import com.courierx.courierx.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -46,12 +49,20 @@ public class AdminSearch extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
+                            for(DataSnapshot ds : snapshot.getChildren()){
 
+                                CourierXUser courierXUser = ds.getValue(CourierXUser.class);
+                                Intent intent = new Intent(getContext(), AddPayment.class);
+                                intent.putExtra("uid" , courierXUser.getUid());
+                                intent.putExtra("balance" , courierXUser.getBalance());
+                                intent.putExtra("userName" , courierXUser.getUsername());
+                                startActivity(intent);
+                                
+
+                            }
                         }else {
                             Snackbar.make(view,"No such user", Snackbar.LENGTH_LONG).show();
                         }
-
-
 
                     }
 

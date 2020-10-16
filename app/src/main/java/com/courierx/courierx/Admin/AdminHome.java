@@ -62,7 +62,6 @@ public class AdminHome extends Fragment {
                         intent.putExtra("uid" , key);
                         intent.putExtra("balance" , balance);
                         intent.putExtra("userName" , userName);
-
                         startActivity(intent);
                     }
                 });
