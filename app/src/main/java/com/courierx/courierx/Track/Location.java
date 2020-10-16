@@ -119,7 +119,6 @@ public class Location extends Fragment {
                 SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",
                         Locale.getDefault());
                 String text = sfd.format(date);
-
                 holder.time.setText(text);
             }
         } ;

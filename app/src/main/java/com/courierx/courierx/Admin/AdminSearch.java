@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.courierx.courierx.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,18 +39,16 @@ public class AdminSearch extends Fragment {
 
         searchUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 String searchId = userId.getText().toString();
 
                 userRef.orderByChild("uid").equalTo(searchId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot != null){
-
+                        if (snapshot.exists()){
 
                         }else {
-
-
+                            Snackbar.make(view,"No such user", Snackbar.LENGTH_LONG).show();
                         }
 
 

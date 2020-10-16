@@ -46,5 +46,5 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.airbnb.android:lottie:3.4.2'
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
-
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

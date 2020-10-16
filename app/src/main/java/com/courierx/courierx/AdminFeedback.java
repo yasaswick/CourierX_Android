@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -63,7 +68,17 @@ public class AdminFeedback extends Fragment {
                 holder.name.setText(model.getUserName());
                 holder.details.setText(model.getContent());
                 holder.title.setText(model.getTitle());
-                holder.date.setText(model.getDate().toString());
+
+                Date date = new Date(model.getDate());
+                SimpleDateFormat sfd = new SimpleDateFormat("dd, MMM yyyy",
+                        Locale.getDefault());
+                String text = sfd.format(date);
+                holder.date.setText(text);
+
+                if(model.getRead() == 0){
+                    holder.readStat.setVisibility(View.VISIBLE);
+                }
+
                 Log.d("hhh" , " test values : " + model.getTitle());
 
             }
@@ -97,20 +112,36 @@ public class AdminFeedback extends Fragment {
 
                 case ItemTouchHelper.RIGHT:
 
+                    if (feedback.getRead() == 0){
+                        Snackbar.make(contextView, "Review Marked as read", Snackbar.LENGTH_SHORT).show();
+                        ref.child(feedback.getFeedbackId()).child("read").setValue(1);
+                    } else {
+                        Snackbar.make(contextView, "Review Marked as unread", Snackbar.LENGTH_SHORT).show();
+                        ref.child(feedback.getFeedbackId()).child("read").setValue(0);
+                    }
                     break;
             }
+            feedbackListAdapter.notifyDataSetChanged();
+            feedbackListAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
         }
 
 
         @Override
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorAccent))
-                    .addActionIcon(R.drawable.ic_baseline_remove_circle_outline_24)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(contextView.getContext(), R.color.appWarning))
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(contextView.getContext(), R.color.appSuccess))
+                    .addSwipeLeftActionIcon(R.drawable.ic_baseline_remove_circle_24)
+                    .addSwipeRightActionIcon(R.drawable.ic_baseline_markunread_24)
+                    .setSwipeRightLabelColor(R.color.appColorWhite)
                     .create()
                     .decorate();
 
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            float newDx = dX;
+            if (newDx >= 100f) {
+                newDx = 100f;
+            }
+            super.onChildDraw(c, recyclerView, viewHolder, newDx, dY, actionState, isCurrentlyActive);
         }
     };
 
