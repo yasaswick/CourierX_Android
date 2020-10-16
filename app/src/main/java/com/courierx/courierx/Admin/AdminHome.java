@@ -53,7 +53,7 @@ public class AdminHome extends Fragment {
 
                 holder.uid.setText(model.getUid());
                 holder.balance.setText(model.getBalance().toString() + " LKR");
-                holder.name.setText(model.getFirstName() + " " + model.getLastName() );
+                holder.name.setText(model.getFirstName() + " " + model.getLastName());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

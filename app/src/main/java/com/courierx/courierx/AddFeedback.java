@@ -49,24 +49,20 @@ public class AddFeedback extends Fragment {
         editTextFilledExposedDropdown.setAdapter(adapter);
 
         addFeedback = view.findViewById(R.id.addFeedbackBtn);
-       topic = view.findViewById(R.id.selectTopicDropDown);
-       message = view.findViewById(R.id.feedbackMessage);
-       topicLayout = view.findViewById(R.id.feedbackTopicLayout);
-       messageLayout = view.findViewById(R.id.feedbackMessageLayout);
-
-
+        topic = view.findViewById(R.id.selectTopicDropDown);
+        message = view.findViewById(R.id.feedbackMessage);
+        topicLayout = view.findViewById(R.id.feedbackTopicLayout);
+        messageLayout = view.findViewById(R.id.feedbackMessageLayout);
 
         addFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Feedback feedback = new Feedback();
                 feedback.setUserId(userDetailsSingleton.getCourierXUser().getUid());
-                feedback.setUserName(userDetailsSingleton.getCourierXUser().getFirstName() + " "+ userDetailsSingleton.getCourierXUser().getLastName());
+                feedback.setUserName(userDetailsSingleton.getCourierXUser().getFirstName() + " " + userDetailsSingleton.getCourierXUser().getLastName());
                 feedback.setDate(System.currentTimeMillis());
-
                 if(topic.getText().toString()!= null){
                     feedback.setTitle(topic.getText().toString());
-                    messageLayout.setError("Please Enter a message");
                     if(message.getText().toString()!= null){
                         feedback.setContent(message.getText().toString());
                         feedback.setRead(0);
@@ -78,13 +74,17 @@ public class AddFeedback extends Fragment {
                     }
                 }else{
                     topicLayout.setError("Please Enter a topic");
-
                 }
             }
         });
-
-
-
         return view;
     }
+
+
+
+
+
+
+
+
 }
