@@ -2,7 +2,6 @@ package com.courierx.courierx.EntryPoints;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,21 +21,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.courierx.courierx.AddFeedback;
-import com.courierx.courierx.AddPackageDetails;
+import com.courierx.courierx.Feedback.AddFeedback;
 import com.courierx.courierx.AuthScreens.Wrapper;
-import com.courierx.courierx.Interfaces.UserDataCallback;
-import com.courierx.courierx.Models.CourierXUser;
-import com.courierx.courierx.Models.PackageDetails;
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.R;
 import com.courierx.courierx.Services.FirebaseAuthentication;
-import com.courierx.courierx.Services.FirebaseRealtime;
 import com.courierx.courierx.UserEditProfile;
-import com.courierx.courierx.UserPackages;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class UserMain extends AppCompatActivity {
 
