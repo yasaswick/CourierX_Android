@@ -20,6 +20,7 @@ public class PackageDetails {
     private String pickDate;
     private String addedDate;
     private String status;
+    private String pickedStatus;
     private String description;
     private Float weight;
     private String scheduledDate;

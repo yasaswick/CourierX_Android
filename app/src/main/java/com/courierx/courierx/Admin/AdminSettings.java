@@ -37,5 +37,25 @@ public class AdminSettings extends Fragment {
 
         return view;
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_admin_settings, container, false);
+        Button logoutBtn = view.findViewById(R.id.admin_logout_button);
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
+                firebaseAuthentication.logOut(getContext());
+                Intent intent = new Intent(getContext() , Wrapper.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+
+        });
+        return view;
+
     }
 }
