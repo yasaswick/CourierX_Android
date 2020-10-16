@@ -99,7 +99,7 @@ public class Location extends Fragment {
         deliveryLocationListRecycler = view.findViewById(R.id.last_loction_list_recyclerview);
         deliveryLocationListRecycler.setHasFixedSize(true);
         deliveryLocationListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-     //   deliveryManName2 = view.findViewById(R.id.deliverymanName);
+     //  deliveryManName2 = view.findViewById(R.id.deliverymanName);
        // deliveryManName2.setText(userDetailsSingleton.getCourierXUser().getFirstName());
 
         deliveryLocationListOptions = new FirebaseRecyclerOptions.Builder<TrackInfo>().setQuery(ref , TrackInfo.class).build();
@@ -110,7 +110,6 @@ public class Location extends Fragment {
                 View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.package_location_list_card , parent , false);
                 return new DeliveryLocationListViewHolder(recyclerview);
             }
-
             @Override
             protected void onBindViewHolder(@NonNull DeliveryLocationListViewHolder holder, int position, @NonNull TrackInfo model) {
 
@@ -119,11 +118,9 @@ public class Location extends Fragment {
                 SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss",
                         Locale.getDefault());
                 String text = sfd.format(date);
-
                 holder.time.setText(text);
             }
-        } ;
-
+        };
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -15,4 +15,5 @@ public class Feedback {
     String title;
     Long date;
     String content;
+    int read;
 }

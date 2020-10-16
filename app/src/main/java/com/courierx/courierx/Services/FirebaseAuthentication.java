@@ -59,7 +59,6 @@ public class FirebaseAuthentication {
     public void logOut(Context mContext){
         mAuth.signOut();
 //        Intent intent = new Intent(mContext , Wrapper.class);
-//
 //        mContext.startActivity(intent);
 //        ((Activity) mContext).finish();
     }

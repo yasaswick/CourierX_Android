@@ -1,6 +1,7 @@
 package com.courierx.courierx;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ public class FeedbackListViewHolder extends RecyclerView.ViewHolder {
 
 
     TextView title , date, details ,name;
+    ImageView readStat;
 
     public FeedbackListViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,5 +21,6 @@ public class FeedbackListViewHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.feedbackCardDate);
         details = itemView.findViewById(R.id.feedbackCardDetails);
         name = itemView.findViewById(R.id.feedbackCardName);
+        readStat = itemView.findViewById(R.id.readFeedbackIcon);
     }
 }
