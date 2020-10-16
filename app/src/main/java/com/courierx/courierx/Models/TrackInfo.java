@@ -12,6 +12,5 @@ public class TrackInfo {
     String time;
     Long date;
     String location;
-
 }
 

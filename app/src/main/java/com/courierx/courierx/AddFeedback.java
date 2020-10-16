@@ -61,7 +61,6 @@ public class AddFeedback extends Fragment {
                 feedback.setUserId(userDetailsSingleton.getCourierXUser().getUid());
                 feedback.setUserName(userDetailsSingleton.getCourierXUser().getFirstName() + " " + userDetailsSingleton.getCourierXUser().getLastName());
                 feedback.setDate(System.currentTimeMillis());
-
                 if(topic.getText().toString()!= null){
                     feedback.setTitle(topic.getText().toString());
                     if(message.getText().toString()!= null){
@@ -80,4 +79,12 @@ public class AddFeedback extends Fragment {
         });
         return view;
     }
+
+
+
+
+
+
+
+
 }
