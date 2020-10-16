@@ -62,9 +62,11 @@ public class FirebaseRealtime {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String key = ds.getRef().child("trackInfo").push().getKey();
+                    trackInfo.setTrackInfoId(key);
                     List<TrackInfo> trackInfoList = new ArrayList<>();
                     trackInfoList.add(trackInfo);
-                    ds.getRef().child("trackInfo").push().setValue(trackInfo);
+                    ds.getRef().child("trackInfo").child(key).setValue(trackInfo);
                 }
             }
 
