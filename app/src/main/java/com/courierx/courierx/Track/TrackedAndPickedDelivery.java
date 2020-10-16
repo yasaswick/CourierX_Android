@@ -45,7 +45,7 @@ public class TrackedAndPickedDelivery extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_tracked_and_picked_delivery, container, false);
         packageid = view.findViewById(R.id.pkgID);
         sender = view.findViewById(R.id.sndrecevr);
-        sndrcvrtxt = view.findViewById(R.id.sndrrcvr);
+        sndrcvrtxt = view.findViewById(R.id.user_new_balance);
         discrption = view.findViewById(R.id.dccrptn);
         adddte = view.findViewById(R.id.adddte);
         shduledte = view.findViewById(R.id.shdledte);
