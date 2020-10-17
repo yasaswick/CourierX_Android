@@ -124,4 +124,7 @@ public class AddPayment extends AppCompatActivity {
         creditLogRecycler.setAdapter(creditLogListAdapter);
 
     }
+
+    public boolean paymentUserValidate(String no_such_user) {
+    }
 }

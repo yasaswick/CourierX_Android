@@ -44,5 +44,6 @@
     <string name="sender_receiver">Sender/Receiver</string>
     <string name="receiver">Receiver</string>
     <string name="status">Status</string>
+    <string name="add_package_details">Add Package Details</string>
 
 </resources>
