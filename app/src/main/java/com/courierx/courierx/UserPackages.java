@@ -1,21 +1,16 @@
 package com.courierx.courierx;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-
 import com.courierx.courierx.Models.UserDetailsSingleton;
 import com.courierx.courierx.Packages.ToMeViewHolder;
 import com.courierx.courierx.Track.TrackedAndPickedDelivery;
@@ -25,8 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.courierx.courierx.Models.PackageDetails;
 import com.google.firebase.database.Query;
-
-import java.lang.annotation.Target;
 
 public class UserPackages extends Fragment {
 

@@ -143,4 +143,36 @@ public class AddPackageDetails extends Fragment {
         Intent intent = new Intent(getContext(), ConfirmPay.class);
         startActivity(intent);
     }
+
+    public boolean descriptionValidate(String description) {
+        if(description.isEmpty()){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean weightValidate(String weigt) {
+        if (!weigt.isEmpty()){
+            try {
+                Float.parseFloat(weigt);
+                return true;
+            }catch (NumberFormatException ex){
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean dateValidate(String dat) {
+        if (dat.isEmpty()){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }

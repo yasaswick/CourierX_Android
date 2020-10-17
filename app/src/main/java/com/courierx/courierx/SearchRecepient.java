@@ -78,4 +78,13 @@ public class SearchRecepient extends Fragment {
         ft.replace(R.id.navHostFragment_user, addPackageDetails);
         ft.commit();
     }
+
+    public boolean recepientValidate(String recpnt) {
+        if (recpnt.isEmpty()){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
