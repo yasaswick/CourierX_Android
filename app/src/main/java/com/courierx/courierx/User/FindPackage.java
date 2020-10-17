@@ -63,7 +63,7 @@ public class FindPackage extends Fragment {
             @NonNull
             @Override
             public UserLocationListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.package_location_list_card , parent , false);
+                View recyclerview = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_package_location_list_card , parent , false);
                 return new UserLocationListViewHolder(recyclerview);
             }
 
